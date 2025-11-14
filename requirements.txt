@@ -1,30 +1,25 @@
-# ECBS5294 - Introduction to Data Science: Working with Data
-# Course Dependencies
+# ECBS5294: Introduction to Data Science: Working with Data
+# Requirements for course materials and assignments
 
-# Core Data Science Libraries
-pandas>=2.0.0
-numpy>=1.24.0
-duckdb>=0.9.0
+# Python Version Requirement
+# This course is tested with Python 3.11-3.13
+# Python 3.14 has compatibility issues with ipykernel 7.x (see https://github.com/ipython/ipykernel/issues/1445)
+# Python 3.10 and earlier are not recommended
 
-# API & HTTP Requests (Day 2 Block B)
-requests>=2.31.0
+# Core Data Analysis
+pandas>=2.0.0,<3.0.0
+numpy>=1.24.0,<2.0.0
 
-# Jupyter Notebook Environment
+# Database/SQL
+duckdb>=0.9.0,<1.0.0
+
+# Jupyter Environment
 jupyter>=1.0.0
 jupyterlab>=4.0.0
-notebook>=7.0.0
+ipykernel>=6.25.0,<7.0.0  # Pinned to avoid Python 3.14 compatibility issues
 
-# Visualization (optional, for future use)
-matplotlib>=3.7.0
-seaborn>=0.12.0
+# API/Web Requests (for Day 2 JSON exercises)
+requests>=2.31.0
 
-# Development/Testing (optional)
-ipykernel>=6.25.0
-
-# Production API Patterns (optional - referenced in quick reference card)
-# Uncomment if students want to explore production patterns:
-# tenacity>=8.2.0          # Automatic retry logic
-# ratelimit>=2.2.1         # Rate limiting
-# requests-cache>=1.1.0    # Response caching
-# responses>=0.23.0        # API testing mocks
-# python-dotenv>=1.0.0     # Environment variable management
+# Optional but recommended
+matplotlib>=3.7.0  # For visualizations if needed

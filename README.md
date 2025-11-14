@@ -48,14 +48,27 @@ By the end, you'll handle 500K-row datasets, write production-quality queries, a
    ```
 
 2. **Set up your environment:**
-   - Python 3.x
-   - JupyterLab or VS Code
-   - DuckDB (`pip install duckdb`)
-   - Git
+
+   **Python Version:** 3.11, 3.12, or 3.13 recommended
+   - ✅ Python 3.11-3.13 (tested and recommended)
+   - ⚠️ Python 3.14+ has compatibility issues with Jupyter
+   - ❌ Python 3.10 and earlier not recommended
+
+   **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   This installs: pandas, numpy, duckdb, jupyter, jupyterlab, requests, and more.
+
+   **Alternative (manual installation):**
+   ```bash
+   pip install pandas numpy duckdb jupyter jupyterlab requests
+   ```
 
 3. **Test your setup:**
    ```bash
-   jupyter lab notebooks/day1_setup_check.ipynb
+   jupyter lab notebooks/day1/day1_setup_check.ipynb
    ```
 
 4. **Bring your laptop to every class!**
