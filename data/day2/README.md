@@ -605,17 +605,18 @@ Once comfortable with basic joins, try:
 
 # Block B: DummyJSON Products API
 
-**Source:** DummyJSON - Fake REST API for Testing and Prototyping  
-**URL:** https://dummyjson.com/docs/products  
-**License:** Public API, no authentication required  
-**File:** `block_b/products.json`  
+**Source:** DummyJSON - Fake REST API for Testing and Prototyping
+**URL:** https://dummyjson.com/docs/products
+**License:** Public API, no authentication required
+**Teaching Method:** Live API calls (primary) + offline backup (emergency only)
+**Backup File:** `block_b/products_backup.json` (30 products)
 **Used in:** Day 2 Block B (JSON Normalization and API Ingestion)
 
 ---
 
 ## Dataset Description
 
-This is a **JSON dataset from DummyJSON**, a free fake REST API designed for testing and prototyping. It contains 100 products with realistic e-commerce data including nested objects, arrays, and one-to-many relationships.
+This is a **JSON dataset from DummyJSON**, a free fake REST API designed for testing and prototyping. Teaching notebooks fetch 30 products via live API calls, with an offline backup file available if the API is unavailable during class.
 
 This dataset is perfect for teaching JSON normalization because it contains **multiple levels of nesting** that must be flattened and normalized into relational tables. Students will learn to parse complex JSON structures, extract nested data, and transform them into clean relational schemas.
 
@@ -625,7 +626,8 @@ This dataset is perfect for teaching JSON normalization because it contains **mu
 - ✅ Multiple normalization opportunities (one-to-many, many-to-many)
 - ✅ No authentication required (students focus on data transformation, not API complexity)
 - ✅ Business-relevant (product catalog with reviews - recognizable domain)
-- ✅ Manageable size (100 products, 300 reviews, 203KB) - easy to inspect
+- ✅ Manageable size (30 products via API, ~90 reviews) - easy to inspect
+- ✅ Live API teaching (shows real-world data fetching patterns)
 
 ---
 
@@ -635,12 +637,14 @@ This dataset is perfect for teaching JSON normalization because it contains **mu
 
 ```json
 {
-  "products": [ ... ],  // Array of 100 product objects
+  "products": [ ... ],  // Array of 30 product objects (teaching uses limit=30)
   "total": 194,         // Total products available in API
   "skip": 0,            // Pagination offset
-  "limit": 100          // Number of products returned
+  "limit": 30           // Number of products requested (teaching default)
 }
 ```
+
+**Note:** Teaching notebooks fetch 30 products from the live API using `?limit=30`. The backup file (`products_backup.json`) contains the same 30 products for offline use.
 
 ### Product Object Structure
 
@@ -730,7 +734,7 @@ Each product in the `products` array has the following structure:
 ```
 
 **Statistics:**
-- Total reviews across 100 products: **300 reviews**
+- Total reviews across 30 products: **~90 reviews** (3 per product average)
 - Average reviews per product: **3 reviews**
 
 **Normalization strategy:** Create separate `reviews` table
@@ -847,7 +851,7 @@ After normalization, the JSON should be transformed into these tables:
 | `reviewer_name` | VARCHAR | `reviews[].reviewerName` |
 | `reviewer_email` | VARCHAR | `reviews[].reviewerEmail` |
 
-**Expected rows:** 300 reviews (from 100 products)
+**Expected rows:** ~90 reviews (from 30 products, ~3 reviews per product)
 
 ---
 
@@ -858,7 +862,7 @@ After normalization, the JSON should be transformed into these tables:
 | `product_id` | INTEGER | Parent product `id` (FK) |
 | `tag` | VARCHAR | `tags[]` (exploded) |
 
-**Expected rows:** ~200-250 rows (100 products × 2-3 tags each)
+**Expected rows:** ~60-90 rows (30 products × 2-3 tags each)
 
 ---
 
@@ -878,20 +882,33 @@ After normalization, the JSON should be transformed into these tables:
 
 ### Load and Parse JSON
 
+**Primary Method: Live API (used in teaching notebooks)**
 ```python
+import requests
 import json
-import pandas as pd
 
-# Load JSON file
-with open('data/day2/block_b/products.json', 'r') as f:
-    data = json.load(f)
+# Fetch from live API (preferred method)
+response = requests.get("https://dummyjson.com/products", params={'limit': 30}, timeout=10)
+data = response.json()
 
 # Extract products array
 products = data['products']
-print(f"Loaded {len(products)} products")
+print(f"Loaded {len(products)} products from API")
 
 # Inspect first product
 print(products[0].keys())
+```
+
+**Backup Method: Offline File (emergency only)**
+```python
+import json
+
+# Load backup file if API is unavailable
+with open('data/day2/block_b/products_backup.json', 'r') as f:
+    data = json.load(f)
+
+products = data['products']
+print(f"Loaded {len(products)} products from backup file")
 ```
 
 ### Normalize `products` Table (Flatten Nested Objects)
@@ -1037,7 +1054,7 @@ By working with this dataset, students will practice:
 - **File size:** 203 KB
 
 ### Categories
-The 100 products span multiple categories including:
+The 30 products span multiple categories including:
 - beauty
 - fragrances
 - furniture

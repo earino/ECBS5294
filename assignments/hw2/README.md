@@ -86,7 +86,7 @@ By completing this assignment, you will demonstrate ability to:
 - **Product-tag relationships:** 364 tags
 - **Unique categories:** 24 product categories
 - **File size:** 316 KB
-- **Location:** `data/products.json`
+- **Location:** `data/products_hw2.json`
 
 ### Why This Dataset?
 DummyJSON provides realistic e-commerce data that mirrors real-world API responses:

@@ -24,9 +24,9 @@ def check_hw2():
 
     # Check 1: Data file exists
     print("\n✓ Checking data file...")
-    if not os.path.exists('data/products.json'):
-        errors.append("❌ data/products.json not found")
-        print("  ❌ data/products.json not found")
+    if not os.path.exists('data/products_hw2.json'):
+        errors.append("❌ data/products_hw2.json not found")
+        print("  ❌ data/products_hw2.json not found")
         return False
     else:
         print("  ✅ Data file exists")
@@ -34,7 +34,7 @@ def check_hw2():
     # Check 2: Load JSON data
     print("\n✓ Loading JSON data...")
     try:
-        with open('data/products.json', 'r') as f:
+        with open('data/products_hw2.json', 'r') as f:
             data = json.load(f)
         products = data['products']
         print(f"  ✅ Loaded {len(products)} products")

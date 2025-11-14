@@ -2,6 +2,14 @@
 
 This directory contains **backup JSON files** fetched from the DummyJSON API.
 
+## ⚠️ Important: Teaching Data Source
+
+**Day 2 teaching notebooks use:**
+1. **PRIMARY:** Live API calls to `https://dummyjson.com/products?limit=30`
+2. **BACKUP:** `products_backup.json` (30 products) - emergency fallback only
+
+**This directory does NOT contain data for homework assignments.** Homework datasets are located in `assignments/hwN/data/` folders.
+
 ## Purpose
 
 These files serve as **emergency fallback data** for teaching notebooks if the live DummyJSON API is unavailable during class.
