@@ -157,7 +157,6 @@ Examples:
 - Examples:
   - `solutions/solutions-day1-blockA.zip`
   - `solutions/solutions-hw1.zip`
-  - `solutions/solutions-midterm.zip`
 
 ### Encryption Workflow
 

@@ -98,7 +98,7 @@ By the end of today, you'll be able to:
 # Materials You'll Need
 
 **Datasets:**
-- `data/day2/olist/` - Multi-table e-commerce data
+- `data/day2/block_a/` - Multi-table e-commerce data
 - DummyJSON API (live endpoint, no auth required)
 
 **Teaching notebooks:**

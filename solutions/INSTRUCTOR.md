@@ -29,8 +29,8 @@ solutions/
 
 Develop solution notebooks following the naming convention:
 
-- `notebooks/day1_exercise_tidy_solution.ipynb`
-- `notebooks/hw1_solution.ipynb`
+- `day1_exercise_tidy_solution.ipynb` (your local, uncommitted copy)
+- `hw1_solution.ipynb` (your local, uncommitted copy)
 - `sql/day3_query_solution.sql`
 
 **Important**: Keep solution files OUTSIDE the repository or ensure they're gitignored until encrypted.

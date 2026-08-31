@@ -332,5 +332,5 @@ Validate with assertions!
 
 **More resources:**
 - Hadley Wickham's "Tidy Data" paper: `references/papers/tidy_data_summary.md`
-- Teaching notebook: `notebooks/day1_block_a_tidy_foundations.ipynb`
+- Teaching notebook: `notebooks/day1/day1_block_a_tidy_foundations.ipynb`
 - Exercise dataset: `data/day1/dirty_cafe_sales.csv`

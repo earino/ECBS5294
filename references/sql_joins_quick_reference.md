@@ -350,11 +350,11 @@ WHERE LOWER(column) = 'value'
 
 ## Additional Resources
 
-**Teaching Notebook:** `notebooks/day2_block_a_joins.ipynb`
+**Teaching Notebook:** `notebooks/day2/day2_block_a_joins.ipynb`
 - Complete worked examples
 - All concepts demonstrated with real data
 
-**Exercise:** `notebooks/day2_exercise_joins.ipynb`
+**Exercise:** `notebooks/day2/day2_exercise_joins.ipynb`
 - Paula Costa business scenario
 - Scaffolded queries with TODOs
 

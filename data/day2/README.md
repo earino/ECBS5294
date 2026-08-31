@@ -562,8 +562,8 @@ WHERE oi.order_id IS NULL;
 - **"Category names are in Portuguese"** → Join with `product_category_name_translation.csv`.
 
 **For more examples, see Day 2 teaching notebooks:**
-- `notebooks/day2_block_a_01_joins_basics.ipynb`
-- `notebooks/day2_block_a_02_join_patterns.ipynb`
+- `notebooks/day2/day2_block_a_joins.ipynb`
+- `notebooks/day2/day2_exercise_joins.ipynb`
 
 ---
 
@@ -598,7 +598,7 @@ Once comfortable with basic joins, try:
 
 ---
 
-**Ready to start? Open `notebooks/day2_block_a_01_joins_basics.ipynb` and let's join some tables!**
+**Ready to start? Open `notebooks/day2/day2_block_a_joins.ipynb` and let's join some tables!**
 
 ---
 ---
@@ -1193,4 +1193,4 @@ Once comfortable with basic normalization, try:
 
 ---
 
-**Ready to normalize? Open `notebooks/day2_block_b_01_json_normalization.ipynb` and let's flatten some JSON!**
+**Ready to normalize? Open `notebooks/day2/day2_block_b_01_api_json_basics.ipynb` and let's flatten some JSON!**
