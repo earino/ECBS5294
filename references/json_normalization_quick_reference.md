@@ -621,8 +621,8 @@ con.execute("CREATE TABLE tags AS SELECT * FROM tags_df")
 ## Additional Resources
 
 **Teaching Notebooks:**
-- `notebooks/day2_block_b_01_api_json_basics.ipynb` - JSON fundamentals and API calls
-- `notebooks/day2_block_b_02_json_to_duckdb.ipynb` - Complete normalization pipeline
+- `notebooks/day2/day2_block_b_01_api_json_basics.ipynb` - JSON fundamentals and API calls
+- `notebooks/day2/day2_block_b_02_json_to_duckdb.ipynb` - Complete normalization pipeline
 
 **Data Documentation:**
 - `data/day2/README.md` - Dataset descriptions and sources

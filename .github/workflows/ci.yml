@@ -40,5 +40,46 @@ jobs:
         shell: bash
         run: uv run python scripts/validate_notebook_format.py $(git ls-files 'notebooks/**/*.ipynb' 'assignments/**/*.ipynb')
 
+      - name: Syntax-check starters and TODO exercises
+        run: uv run python scripts/check_starter_syntax.py
+
+      - name: Verify solution ZIP encryption
+        run: uv run python scripts/check_solution_zips.py
+
+      - name: Documentation consistency
+        run: uv run python scripts/check_doc_consistency.py
+
+      - name: Dataset invariants and offline backup
+        run: uv run pytest tests/ -q
+
       - name: Execute all teaching notebooks
         run: uv run python scripts/execute_notebooks.py
+
+  verify-solutions:
+    # Decrypts and executes every solution notebook. Runs only where the
+    # SOLUTION_PASSWORDS secret exists (skipped cleanly on forks).
+    name: verify-solutions
+    runs-on: ubuntu-latest
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          enable-cache: true
+          cache-python: true
+
+      - name: Sync environment
+        run: uv sync --locked
+
+      - name: Decrypt and execute all solutions
+        env:
+          SOLUTION_PASSWORDS: ${{ secrets.SOLUTION_PASSWORDS }}
+        run: |
+          if [ -z "$SOLUTION_PASSWORDS" ]; then
+            echo "SOLUTION_PASSWORDS secret not available (fork?) — skipping."
+            exit 0
+          fi
+          uv run python scripts/ci_run_solutions.py

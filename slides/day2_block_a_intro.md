@@ -114,7 +114,7 @@ This is what you'll encounter in the wild.
 `notebooks/day2/day2_block_a_joins.ipynb`
 
 **Exercise dataset:**
-`data/day2/olist/` (8 CSV files)
+`data/day2/block_a/` (8 CSV files)
 
 **Exercise starter:**
 `notebooks/day2/day2_exercise_joins.ipynb`

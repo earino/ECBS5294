@@ -53,13 +53,13 @@ Every "purchase," "return," "review" becomes a **verb** that drives metrics.
 # Materials for Today
 
 **Teaching notebook:**
-`notebooks/day1_block_a_tidy_foundations.ipynb`
+`notebooks/day1/day1_block_a_tidy_foundations.ipynb`
 
 **Exercise dataset:**
 `data/day1/dirty_cafe_sales.csv`
 
 **Exercise starter:**
-`notebooks/day1_exercise_tidy.ipynb`
+`notebooks/day1/day1_exercise_tidy.ipynb`
 
 **Quick reference:**
 `references/tidy_data_checklist.md`

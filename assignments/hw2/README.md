@@ -443,7 +443,7 @@ By completing this, you'll have done actual data analyst work that companies nee
 **Course Materials:**
 - Day 2 Block B notebooks: JSON normalization examples
 - Day 2 Block A notebooks: SQL join patterns
-- `references/json_normalization_guide.md` (if available)
+- `references/json_normalization_quick_reference.md` (if available)
 
 **External Documentation:**
 - Pandas JSON normalization: https://pandas.pydata.org/docs/user_guide/io.html#json
