@@ -39,7 +39,7 @@ Once released, passwords will be announced in Moodle and documented in the cours
 **Option A: Using the Decryption Script (Recommended)**
 
 ```bash
-uv run python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
+uv run python scripts/decrypt_solutions_zip.py solutions/solutions-day1-blockA.zip
 ```
 
 This will prompt you for the password and extract files to `solutions/decrypted/`.
@@ -89,7 +89,7 @@ code solutions/decrypted/day1_exercise_tidy_solution.ipynb
 
 If you have trouble accessing solutions:
 - Check that you're using the correct password
-- Ensure you have the decryption script: `scripts/decrypt_solution.py`
+- Ensure you have the decryption script: `scripts/decrypt_solutions_zip.py`
 - Verify Python and required packages are installed
 - Contact the instructor or TA if issues persist
 

@@ -167,7 +167,7 @@ solutions/solutions-hw{N}.zip             # Encrypted homework
 ### References
 ```
 references/{topic}_quick_reference.md     # Student cheat sheets
-references/teaching/day{N}_*.md           # Instructor guides
+(instructor guides live in the private ECBS5294-instructor repo)
 ```
 
 ## Academic Context

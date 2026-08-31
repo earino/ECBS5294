@@ -146,3 +146,4 @@ slides/output/
 # (They are part of the project setup)
 !.git/hooks/pre-commit
 *.nbconvert.ipynb
+data/day2/block_a/olist_geolocation_dataset.csv

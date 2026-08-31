@@ -25,7 +25,6 @@ Central European University
 **Eduardo Ariño de la Rubia**
 
 📧 RubiaE@ceu.edu
-📱 +34 654 69 13 63
 🏢 Room A104
 🕒 Office hours by appointment
 
@@ -259,7 +258,7 @@ https://github.com/earino/ECBS5294
 
 - Ask during class
 - Come to office hours
-- Email or WhatsApp me
+- Email me
 
 **Everyone struggles with this stuff at first.**
 That's why we practice together.

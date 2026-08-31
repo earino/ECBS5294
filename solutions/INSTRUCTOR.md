@@ -119,7 +119,7 @@ Output shows:
 Test that encrypted files work correctly:
 
 ```bash
-uv run python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
+uv run python scripts/decrypt_solutions_zip.py solutions/solutions-day1-blockA.zip
 ```
 
 Files will be extracted to `solutions/decrypted/` (gitignored).
@@ -204,7 +204,7 @@ Examples:
 
 ### Can't Decrypt ZIP
 
-**Symptom**: `decrypt_solution.py` fails with "Bad password"
+**Symptom**: `decrypt_solutions_zip.py` fails with "Bad password"
 
 **Solution**:
 1. Verify password in `PASSWORDS.md`

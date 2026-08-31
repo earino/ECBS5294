@@ -1,8 +1,8 @@
 # **(ECBS5294) Introduction to Data Science: Working with Data**
 
-**Academic year:** 2025–2026  
+**Academic year:** 2026–2027  
 **Credits:** 1.0 (600 minutes; runs alongside Coding 1 and Data Science 1\)  
-**Dates / Time:** **Wed Oct 8**, **Wed Oct 15**, **Wed Oct 22**  
+**Dates / Time:** **TBD**, **TBD**, **TBD** *(update at term start)*  
 **Meeting blocks:** 13:30–15:10 and 15:30–17:10
 
 ---
@@ -50,7 +50,7 @@ By the end, students can:
 
 6. Communicate results clearly with concise tables/metrics and a short data dictionary, noting assumptions and limits.
 
-7. Demonstrate basic **performance intuition** (list vs dict lookups, join cardinality).
+7. Demonstrate basic **performance intuition** (join cardinality and row explosion, aggregation before joining).
 
 ---
 
@@ -190,7 +190,7 @@ By the end, students can:
 
   * One A4 reference sheet (both sides, typed or handwritten) permitted.
 
-* **Assigned:** **HW3** (end-to-end pipeline using an **offline data pack** — CSV \+ JSON \+ Parquet).
+* **Assigned:** **HW3** (end-to-end pipeline using an **offline data pack** — CSV \+ JSON).
 
   * Deliver: ingest/normalize; persist to DuckDB; 3–5 KPIs with joins and grouping; 2–3 validations as code; concise data dictionary; **stakeholder note** (8–10 sentences).
 
