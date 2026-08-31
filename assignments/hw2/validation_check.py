@@ -52,7 +52,7 @@ def check_hw2():
         # In practice, they'd need to run their notebook first
         print("  ℹ️ Make sure your notebook creates:")
         print("     - products_df (194 rows)")
-        print("     - reviews_df (582 rows)")
+        print("     - reviews_df (710 rows)")
         print("     - tags_df (364 rows)")
     except:
         pass
@@ -116,7 +116,7 @@ def check_hw2():
 
     print("\n💡 TIP: After creating your DataFrames, verify shapes:")
     print("  products_df.shape should be (194, 24+)")
-    print("  reviews_df.shape should be (582, 7)")
+    print("  reviews_df.shape should be (710, 7)")
     print("  tags_df.shape should be (364, 2)")
 
     return len(errors) == 0

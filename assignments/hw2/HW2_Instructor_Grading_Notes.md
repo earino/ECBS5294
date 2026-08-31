@@ -94,7 +94,7 @@
 ### Part 1: Initial Assessment (2 points)
 
 **Look for:**
-- Quantification of data scope (194 products, 582 reviews)
+- Quantification of data scope (194 products, 710 reviews)
 - Quality assessment (missing values, completeness)
 - Effort estimation for normalization
 - Comparison to other data sources
@@ -263,7 +263,7 @@ When improvements needed:
 "You've identified that vehicle category underperforms, but what should we DO about it? Add a specific recommendation."
 
 **Missing context:**
-"You state '582 reviews' - is this good or bad? Compare to benchmarks or other acquisitions for context."
+"You state '710 reviews' - is this good or bad? State the evidence base (time span, per-product spread) rather than inventing a benchmark."
 
 ---
 

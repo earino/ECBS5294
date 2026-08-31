@@ -50,7 +50,7 @@ This assignment tests your ability to:
 - Write SQL queries on normalized data
 - Document your schema for technical teams
 
-You'll work with QuickBuy's **COMPLETE product catalog: 194 products** containing **582 customer reviews** from their e-commerce platform.
+You'll work with QuickBuy's **COMPLETE product catalog: 194 products** containing **710 customer reviews** from their e-commerce platform.
 
 ---
 
@@ -82,7 +82,7 @@ By completing this assignment, you will demonstrate ability to:
 
 ### Dataset Details
 - **Complete catalog:** All 194 products from QuickBuy's acquisition
-- **Customer reviews:** 582 reviews across all products
+- **Customer reviews:** 710 reviews spanning ~18 months (some products have a dozen reviews, a few have none)
 - **Product-tag relationships:** 364 tags
 - **Unique categories:** 24 product categories
 - **File size:** 316 KB
@@ -134,7 +134,7 @@ Each product contains:
 - `meta` → created_at, updated_at, barcode columns
 
 **Arrays to Normalize:**
-- `reviews` → Separate reviews table (one-to-many, 582 total reviews)
+- `reviews` → Separate reviews table (one-to-many, 710 total reviews)
 - `tags` → Separate product_tags table (many-to-many, 364 relationships)
 
 **Data Quality Notes:**
@@ -142,7 +142,7 @@ Each product contains:
 - No missing core fields (id, title, price, category)
 - Dates in ISO 8601 format
 - Prices in USD (float)
-- Average 3 reviews per product
+- Review counts vary by product (0 to 12) — some products are unreviewed
 - Categories span electronics, beauty, groceries, and more
 
 ---
@@ -212,7 +212,7 @@ Tests: Complete documentation of all tables and columns
 
 - [ ] All TODO sections completed
 - [ ] All code cells run without errors
-- [ ] Three tables created: products (194 rows), reviews (582 rows), product_tags (364 rows)
+- [ ] Three tables created: products (194 rows), reviews (710 rows), product_tags (364 rows)
 - [ ] All assertions pass (no assertion errors)
 - [ ] SQL queries return results
 - [ ] Data dictionary complete (all columns from all 3 tables)
