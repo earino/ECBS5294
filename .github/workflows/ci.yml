@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly canary: catch dependency/lockfile rot between semesters
+    - cron: "0 6 * * 1"
+
+jobs:
+  verify:
+    name: verify (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+          cache-python: true
+
+      - name: Sync environment (fails if uv.lock is stale)
+        run: uv sync --locked
+
+      - name: Import smoke test
+        run: uv run python -c "import sys, pandas, numpy, duckdb, requests, matplotlib; assert sys.version_info[:2] == (3, 13), sys.version; print(sys.version); print('pandas', pandas.__version__, '| numpy', numpy.__version__, '| duckdb', duckdb.__version__)"
+
+      - name: Validate notebook format
+        shell: bash
+        run: uv run python scripts/validate_notebook_format.py $(git ls-files 'notebooks/**/*.ipynb' 'assignments/**/*.ipynb')
+
+      - name: Execute all teaching notebooks
+        run: uv run python scripts/execute_notebooks.py

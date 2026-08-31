@@ -1,5 +1,7 @@
 # ECBS5294: Introduction to Data Science: Working with Data
 
+[![CI](https://github.com/earino/ECBS5294/actions/workflows/ci.yml/badge.svg)](https://github.com/earino/ECBS5294/actions/workflows/ci.yml)
+
 **Central European University**
 
 Welcome! This repository contains everything you need for this course: teaching materials, datasets, exercises, assignments, and resources for learning practical data skills.
