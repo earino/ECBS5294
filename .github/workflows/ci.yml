@@ -13,6 +13,10 @@ jobs:
   verify:
     name: verify (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    env:
+      # Windows consoles default to cp1252, which cannot print the ✅/❌
+      # glyphs the course scripts use
+      PYTHONUTF8: "1"
     strategy:
       fail-fast: false
       matrix:
