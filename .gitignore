@@ -78,8 +78,9 @@ data/temp/
 # ============================================
 # IDE and Editor Files
 # ============================================
-# VS Code
-.vscode/
+# VS Code (extensions.json is shared so students get extension recommendations)
+.vscode/*
+!.vscode/extensions.json
 *.code-workspace
 
 # PyCharm
