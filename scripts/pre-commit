@@ -1,0 +1,324 @@
+#!/bin/bash
+#
+# Git Pre-Commit Hook for ECBS5294
+#
+# This hook:
+# 1. Clears outputs from Jupyter notebooks before committing
+# 2. Validates notebook format (nbformat 4.5 with unique cell IDs)
+# 3. Prevents accidental commits of unencrypted solution files
+#
+# Installed by: scripts/setup_hooks.sh
+#
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# ============================================
+# Step 1: Clear Notebook Outputs
+# ============================================
+echo -e "${CYAN}📓 Checking for notebooks with outputs...${NC}"
+
+# Get list of notebook files being committed
+NOTEBOOKS=$(git diff --cached --name-only --diff-filter=ACM | grep '\.ipynb$' || true)
+
+if [ -n "$NOTEBOOKS" ]; then
+    # Clear outputs from notebooks
+    echo "$NOTEBOOKS" | while IFS= read -r notebook; do
+        # Skip empty lines
+        [[ -z "$notebook" ]] && continue
+
+        # Skip if file doesn't exist (might be deleted)
+        [[ ! -f "$notebook" ]] && continue
+
+        # Skip solution notebooks (they shouldn't be committed anyway)
+        if [[ "$notebook" =~ [Ss]olution ]]; then
+            continue
+        fi
+
+        echo -e "${CYAN}  Clearing outputs: $notebook${NC}"
+        uv run python scripts/clear_notebook_outputs.py "$notebook" > /dev/null 2>&1 || {
+            echo -e "${YELLOW}  ⚠️  Could not clear outputs from $notebook${NC}"
+        }
+
+        # Re-stage the cleaned notebook
+        git add "$notebook"
+    done
+
+    echo -e "${GREEN}✅ Notebook outputs cleared${NC}"
+else
+    echo -e "${GREEN}✅ No notebooks to process${NC}"
+fi
+
+echo ""
+
+# ============================================
+# Step 2: Validate Notebook Format
+# ============================================
+echo -e "${CYAN}📋 Validating notebook format (nbformat 4.5 with cell IDs)...${NC}"
+
+# Get list of notebook files being committed (excluding solutions and checkpoints)
+NOTEBOOKS_TO_VALIDATE=$(git diff --cached --name-only --diff-filter=ACM | grep '\.ipynb$' | grep -v '[Ss]olution' | grep -v '\.ipynb_checkpoints' || true)
+
+if [ -n "$NOTEBOOKS_TO_VALIDATE" ]; then
+    # Run notebook format validator
+    # The || arm keeps set -e from aborting before we can print guidance
+    VALIDATION_EXIT_CODE=0
+    VALIDATION_OUTPUT=$(uv run python scripts/validate_notebook_format.py $NOTEBOOKS_TO_VALIDATE 2>&1) || VALIDATION_EXIT_CODE=$?
+
+    if [ $VALIDATION_EXIT_CODE -ne 0 ]; then
+        echo -e "${RED}❌ COMMIT BLOCKED: Notebook format validation failed!${NC}"
+        echo ""
+        echo "$VALIDATION_OUTPUT"
+        echo ""
+        echo -e "${YELLOW}To fix this:${NC}"
+        echo "  1. Open the notebook(s) in VS Code"
+        echo "  2. Save the notebook (adds cell IDs automatically)"
+        echo "  3. Or run: uv run jupyter nbconvert --to notebook --inplace <notebook>"
+        echo ""
+        echo -e "${CYAN}See CLAUDE.md 'Notebook Format Requirements' for details${NC}"
+        echo ""
+        exit 1
+    fi
+
+    echo -e "${GREEN}✅ All notebooks have correct format (nbformat 4.5 with cell IDs)${NC}"
+else
+    echo -e "${GREEN}✅ No notebooks to validate${NC}"
+fi
+
+echo ""
+
+# ============================================
+# Step 3: Check for Unencrypted Solutions
+# ============================================
+echo -e "${CYAN}🔒 Checking for unencrypted solutions...${NC}"
+
+# Get list of files being committed
+FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+# Patterns that should NEVER be committed
+BLOCKED_PATTERNS=(
+    "*_solution.ipynb"
+    "*_solution.py"
+    "*/solution.ipynb"
+    "*/solution.py"
+    "assignments/*/solution/*"
+)
+
+# Check each file being committed
+BLOCKED_FILES=()
+
+while IFS= read -r file; do
+    # Skip empty lines
+    [[ -z "$file" ]] && continue
+
+    # Check against blocked patterns
+    for pattern in "${BLOCKED_PATTERNS[@]}"; do
+        # Convert pattern to regex for case statement
+        case "$file" in
+            $pattern)
+                BLOCKED_FILES+=("$file")
+                ;;
+        esac
+    done
+
+    # Additional check: any file with "solution" in the path (case-insensitive)
+    # EXCEPT for:
+    # - Encrypted ZIPs
+    # - Utility scripts in scripts/ directory
+    # - Documentation files (README, INSTRUCTOR, WORKFLOW, etc.)
+    if [[ "$file" =~ [Ss]olution ]] && [[ ! "$file" =~ \.zip$ ]]; then
+        # Exclude utility scripts and documentation
+        if [[ ! "$file" =~ ^scripts/.*solution.*\.py$ ]] && \
+           [[ ! "$file" =~ ^solutions/(README|INSTRUCTOR|.*WORKFLOW|.*SYSTEM|.*PASSWORD)\.md$ ]] && \
+           [[ ! "$file" =~ ^solutions/\.gitkeep$ ]]; then
+            # Make sure it's not already in the list
+            if [[ ! " ${BLOCKED_FILES[@]} " =~ " ${file} " ]]; then
+                BLOCKED_FILES+=("$file")
+            fi
+        fi
+    fi
+
+done <<< "$FILES"
+
+# If any blocked files found, abort commit
+if [ ${#BLOCKED_FILES[@]} -gt 0 ]; then
+    echo -e "${RED}❌ COMMIT BLOCKED!${NC}"
+    echo ""
+    echo -e "${RED}The following unencrypted solution files cannot be committed:${NC}"
+    echo ""
+
+    for file in "${BLOCKED_FILES[@]}"; do
+        echo -e "  ${RED}✗${NC} $file"
+    done
+
+    echo ""
+    echo -e "${YELLOW}Solutions must be encrypted before committing!${NC}"
+    echo ""
+    echo "To fix this:"
+    echo "  1. Unstage the solution files:"
+    echo "     git reset HEAD ${BLOCKED_FILES[0]}"
+    echo ""
+    echo "  2. Encrypt the solution:"
+    echo "     python scripts/encrypt_solutions.py ${BLOCKED_FILES[0]} \\"
+    echo "       --password \"your-password\" --day X --block Y"
+    echo ""
+    echo "  3. Commit the encrypted ZIP instead:"
+    echo "     git add solutions/solutions-dayX-blockY.zip"
+    echo "     git commit -m \"Add encrypted solutions\""
+    echo ""
+    echo -e "${YELLOW}Or move the file outside the repository${NC}"
+    echo ""
+
+    exit 1
+fi
+
+# Check if any encrypted ZIPs are being committed
+ENCRYPTED_ZIPS=()
+
+while IFS= read -r file; do
+    [[ -z "$file" ]] && continue
+
+    if [[ "$file" =~ solutions/.*\.zip$ ]]; then
+        ENCRYPTED_ZIPS+=("$file")
+    fi
+
+done <<< "$FILES"
+
+# If encrypted ZIPs are being committed, verify they're actually encrypted
+if [ ${#ENCRYPTED_ZIPS[@]} -gt 0 ]; then
+    echo -e "${GREEN}✅ Found encrypted solution ZIPs:${NC}"
+
+    for zipfile in "${ENCRYPTED_ZIPS[@]}"; do
+        # Simple check: try to unzip without password (should fail)
+        # If it succeeds, the ZIP is NOT password-protected!
+        if unzip -t "$zipfile" > /dev/null 2>&1; then
+            echo -e "${RED}❌ ERROR: $zipfile is NOT password-protected!${NC}"
+            echo ""
+            echo "This ZIP file can be extracted without a password."
+            echo "Please re-encrypt it properly:"
+            echo "  python scripts/encrypt_solutions.py <source> --password <pwd> --output $zipfile"
+            echo ""
+            exit 1
+        fi
+
+        echo -e "  ${GREEN}✓${NC} $zipfile (password-protected)"
+    done
+
+    echo ""
+fi
+
+# ============================================
+# Step 4: Verify Password Documentation
+# ============================================
+echo -e "${CYAN}🔐 Checking password documentation...${NC}"
+
+# Check if any password files are being committed (they shouldn't be!)
+PASSWORD_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "(PASSWORDS\.md|\.password_backup\.json|\.encryption_log\.txt)" || true)
+
+if [ -n "$PASSWORD_FILES" ]; then
+    echo -e "${RED}❌ COMMIT BLOCKED: Password files cannot be committed!${NC}"
+    echo ""
+    echo -e "${RED}The following files contain passwords and MUST NOT be committed:${NC}"
+    echo "$PASSWORD_FILES" | while IFS= read -r file; do
+        echo -e "  ${RED}✗${NC} $file"
+    done
+    echo ""
+    echo -e "${YELLOW}These files are gitignored for security. Unstage them:${NC}"
+    echo "  git reset HEAD solutions/PASSWORDS.md"
+    echo "  git reset HEAD solutions/.password_backup.json"
+    echo "  git reset HEAD solutions/.encryption_log.txt"
+    echo ""
+    exit 1
+fi
+
+# If new solution ZIPs are being committed, verify passwords are documented
+if [ ${#ENCRYPTED_ZIPS[@]} -gt 0 ]; then
+    echo -e "${CYAN}🔍 Verifying passwords are documented for new solution ZIPs...${NC}"
+
+    # Check if password backup file exists
+    if [ ! -f "solutions/.password_backup.json" ]; then
+        echo -e "${RED}❌ WARNING: solutions/.password_backup.json not found!${NC}"
+        echo ""
+        echo -e "${YELLOW}Did you use encrypt_solutions_v2.py to create the ZIP?${NC}"
+        echo "The v2 script automatically documents passwords."
+        echo ""
+        echo "To fix:"
+        echo "  1. Verify password is documented in solutions/PASSWORDS.md"
+        echo "  2. Or re-encrypt with: python scripts/encrypt_solutions_v2.py"
+        echo ""
+        exit 1
+    fi
+
+    # Check each ZIP has a documented password
+    MISSING_PASSWORDS=()
+
+    for zipfile in "${ENCRYPTED_ZIPS[@]}"; do
+        zip_basename=$(basename "$zipfile")
+
+        # Check if password exists in backup JSON
+        if ! grep -q "\"$zip_basename\"" "solutions/.password_backup.json" 2>/dev/null; then
+            # Also check PASSWORDS.md as fallback
+            if ! grep -q "$zip_basename" "solutions/PASSWORDS.md" 2>/dev/null; then
+                MISSING_PASSWORDS+=("$zipfile")
+            fi
+        fi
+    done
+
+    if [ ${#MISSING_PASSWORDS[@]} -gt 0 ]; then
+        echo -e "${RED}❌ COMMIT BLOCKED: Solution ZIPs without documented passwords!${NC}"
+        echo ""
+        echo -e "${RED}The following ZIPs have NO DOCUMENTED PASSWORD:${NC}"
+        for file in "${MISSING_PASSWORDS[@]}"; do
+            echo -e "  ${RED}✗${NC} $file"
+        done
+        echo ""
+        echo -e "${YELLOW}⚠️  This is HOW PASSWORDS GET LOST!${NC}"
+        echo ""
+        echo "To fix:"
+        echo "  1. Add password to solutions/PASSWORDS.md manually:"
+        echo "     Edit solutions/PASSWORDS.md and add the password entry"
+        echo ""
+        echo "  2. Or re-encrypt with encrypt_solutions_v2.py (RECOMMENDED):"
+        echo "     python scripts/encrypt_solutions_v2.py <source> \\"
+        echo "       --password \"your-password\" \\"
+        echo "       --output <output.zip> \\"
+        echo "       --description \"What this is\""
+        echo ""
+        echo "The v2 script automatically documents passwords in 3 places!"
+        echo ""
+        exit 1
+    fi
+
+    echo -e "${GREEN}✅ All solution ZIPs have documented passwords${NC}"
+fi
+
+echo -e "${GREEN}✅ Password documentation verified${NC}"
+echo ""
+
+# ============================================
+# Step 5: Warn About Old Encryption Script
+# ============================================
+
+# Check if any files suggest using the old script
+if echo "$FILES" | grep -q "solutions/.*\.zip$"; then
+    # Look for the old script in git history or recent changes
+    if git log -1 --all --grep="encrypt_solutions.py" --not --grep="encrypt_solutions_v2.py" > /dev/null 2>&1; then
+        echo -e "${YELLOW}⚠️  REMINDER: Use encrypt_solutions_v2.py (not the old script!)${NC}"
+        echo -e "${YELLOW}   The v2 script automatically documents passwords and prevents loss.${NC}"
+        echo ""
+    fi
+fi
+
+# ============================================
+# All checks passed
+# ============================================
+echo -e "${GREEN}✅ All pre-commit checks passed!${NC}"
+echo ""
+
+exit 0

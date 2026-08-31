@@ -90,7 +90,7 @@ def fetch_data(url, params):
 data = fetch_data("https://api.example.com/data", {'limit': 100})
 ```
 
-**Install:** `pip install tenacity`
+**Install (optional, not a course dependency):** `uv add tenacity`
 
 **When to use:** Production pipelines where reliability is critical.
 
@@ -133,7 +133,7 @@ def fetch_data(url, params):
     return response.json()
 ```
 
-**Install:** `pip install ratelimit`
+**Install (optional, not a course dependency):** `uv add ratelimit`
 
 ---
 
@@ -305,7 +305,7 @@ response = requests.get("https://api.example.com/data", timeout=10)
 data = response.json()
 ```
 
-**Install:** `pip install requests-cache`
+**Install (optional, not a course dependency):** `uv add requests-cache`
 
 ---
 
@@ -498,7 +498,7 @@ def test_fetch_data():
 test_fetch_data()
 ```
 
-**Install:** `pip install responses`
+**Install (optional, not a course dependency):** `uv add responses`
 
 ---
 

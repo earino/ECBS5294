@@ -357,7 +357,7 @@ SELECT license_id FROM silver_chicago WHERE license_id > 1000
 
 ### Step 1: Run notebook (5 min)
 ```bash
-jupyter nbconvert --to notebook --execute hw3_starter.ipynb --inplace
+uv run jupyter nbconvert --to notebook --execute hw3_starter.ipynb --inplace
 ```
 - If it runs without errors → good sign for reproducibility
 - If it crashes → check if it's absolute paths or real logic errors

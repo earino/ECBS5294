@@ -1,0 +1,21 @@
+[project]
+name = "ecbs5294"
+version = "2026.0.0"
+description = "ECBS5294: Introduction to Data Science: Working with Data (CEU)"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "pandas>=2.0.0,<3.0.0",
+    "numpy>=2.0.0,<3.0.0",
+    "duckdb>=1.0.0,<2.0.0",
+    "requests>=2.31.0",
+    "matplotlib>=3.7.0",
+]
+
+[dependency-groups]
+# Installed by default with `uv sync` — needed to run notebooks in VS Code
+# (ipykernel) and to verify them from the command line (nbconvert).
+dev = [
+    "ipykernel>=6.25.0,<7.0.0",
+    "nbclient>=0.10.0",
+    "nbconvert>=7.0.0",
+]

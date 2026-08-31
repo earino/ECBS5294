@@ -1,5 +1,7 @@
 # ECBS5294: Introduction to Data Science: Working with Data
 
+[![CI](https://github.com/earino/ECBS5294/actions/workflows/ci.yml/badge.svg)](https://github.com/earino/ECBS5294/actions/workflows/ci.yml)
+
 **Central European University**
 
 Welcome! This repository contains everything you need for this course: teaching materials, datasets, exercises, assignments, and resources for learning practical data skills.
@@ -41,6 +43,8 @@ By the end, you'll handle 500K-row datasets, write production-quality queries, a
 
 ### Before Day 1
 
+This course uses the standard CEU environment: **uv**, **VS Code**, and **Python 3.13**. If you attended the prep session you already have uv, VS Code, Git, and a GitHub account set up. If not, see the [CEU environment reference](https://github.com/zoltanctoth/example-uv-based-project) for one-time installation of uv and VS Code.
+
 1. **Clone this repository:**
    ```bash
    git clone https://github.com/earino/ECBS5294.git
@@ -48,28 +52,20 @@ By the end, you'll handle 500K-row datasets, write production-quality queries, a
    ```
 
 2. **Set up your environment:**
-
-   **Python Version:** 3.11, 3.12, or 3.13 recommended
-   - ✅ Python 3.11-3.13 (tested and recommended)
-   - ⚠️ Python 3.14+ has compatibility issues with Jupyter
-   - ❌ Python 3.10 and earlier not recommended
-
-   **Install dependencies:**
    ```bash
-   pip install -r requirements.txt
+   uv sync
    ```
 
-   This installs: pandas, numpy, duckdb, jupyter, jupyterlab, requests, and more.
+   That's it. This creates a `.venv` folder with Python 3.13 (downloaded automatically if you don't have it) and every package the course needs — pandas, numpy, duckdb, requests, and more — at the exact versions the course was tested with.
 
-   **Alternative (manual installation):**
-   ```bash
-   pip install pandas numpy duckdb jupyter jupyterlab requests
-   ```
+   > **Migrating from the old pip setup?** Delete your old virtual environment and run `uv sync`.
 
 3. **Test your setup:**
-   ```bash
-   jupyter lab notebooks/day1/day1_setup_check.ipynb
-   ```
+   - Open the `ECBS5294` folder in VS Code (`File → Open Folder...`)
+   - Install the recommended extensions when VS Code offers them (Python + Jupyter)
+   - Open `notebooks/day1/day1_setup_check.ipynb`
+   - Click **Select Kernel** (top right) and choose the `.venv` Python environment
+   - Click **Run All** — every check should pass
 
 4. **Bring your laptop to every class!**
 
@@ -224,7 +220,7 @@ ECBS5294/
 ## 💡 Tips for Success
 
 ### Reproducibility Is Everything
-- ✅ **Restart & Run All** before submitting – If it doesn't run cleanly, you'll lose points
+- ✅ **Restart & Run All** before submitting (in VS Code: **Restart**, then **Run All**) – If it doesn't run cleanly, you'll lose points
 - ✅ **Use relative paths** – `data/file.csv`, not `/Users/yourname/...`
 - ✅ **Commit often** – Small, logical commits help you track changes
 
@@ -321,20 +317,7 @@ By the end, you'll feel confident tackling real data problems, not just textbook
 
 ## 🛠️ Technical Setup
 
-**Required:**
-- Python 3.x
-- JupyterLab or VS Code
-- DuckDB: `pip install duckdb`
-- Git
-
-**Recommended:**
-- pandas: `pip install pandas`
-- numpy: `pip install numpy`
-
-**Test your setup:**
-```bash
-jupyter lab notebooks/day1_setup_check.ipynb
-```
+Everything you need — Python 3.13, pandas, numpy, DuckDB — comes from one command: `uv sync`. See the [Quick Start](#-quick-start) at the top of this README for the full steps (clone, `uv sync`, open in VS Code, run the setup check).
 
 All teaching datasets are **provided offline** in this repo – no downloads needed!
 
@@ -351,7 +334,7 @@ This course moves fast, but that's because every minute is practical, hands-on s
 
 These are portfolio pieces. These are interview talking points. These are **real skills**.
 
-Ready? Open up `notebooks/day1_setup_check.ipynb` and let's make sure you're ready to go.
+Ready? Open up `notebooks/day1/day1_setup_check.ipynb` in VS Code and let's make sure you're ready to go.
 
 **See you in class!** 🚀
 

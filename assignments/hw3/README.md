@@ -358,7 +358,7 @@ Write **8-10 sentences** for non-technical executives explaining:
 ### What to Submit
 
 1. **Completed Jupyter notebook:** `hw3_starter.ipynb` with all cells run
-2. File must run successfully: **Restart Kernel & Run All Cells**
+2. File must run successfully: **Restart Kernel & Run All Cells** (in VS Code: **Restart**, then **Run All**)
 3. All outputs must be visible
 4. All 6 parts completed
 

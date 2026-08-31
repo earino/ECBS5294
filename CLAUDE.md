@@ -13,7 +13,7 @@ This file provides guidance to Claude Code when working with this repository.
 **MANDATORY:** Every teaching notebook must work perfectly.
 
 ### Core Rules
-1. **Execute entire notebook:** `jupyter nbconvert --to notebook --execute notebooks/your_notebook.ipynb --inplace`
+1. **Execute entire notebook:** `uv run jupyter nbconvert --to notebook --execute notebooks/your_notebook.ipynb --inplace`
 2. **Every query must return data** (unless teaching about empty results)
 3. **Verify constraints before writing queries:**
    ```python
@@ -45,10 +45,10 @@ This file provides guidance to Claude Code when working with this repository.
 ### Workflow
 1. **Encrypt before committing:**
    ```bash
-   python scripts/encrypt_solutions.py notebooks/solution.ipynb \
+   uv run python scripts/encrypt_solutions.py notebooks/solution.ipynb \
      --password "secure-password" --day 1 --block A
    ```
-2. **Verify encryption:** `python scripts/list_solutions.py`
+2. **Verify encryption:** `uv run python scripts/list_solutions.py`
 3. **Commit only ZIPs:** `solutions/solutions-*.zip`
 4. **Document passwords:** in `solutions/PASSWORDS.md` (gitignored)
 
@@ -59,7 +59,7 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Core Technologies
 
-- **Python 3.x** with JupyterLab/VS Code
+- **Python 3.13** managed by **uv** (`uv sync`), notebooks in **VS Code**
 - **DuckDB** for SQL (embedded database)
 - **Git** for version control
 - **Marp** for slides (optional)
