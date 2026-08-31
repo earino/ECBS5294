@@ -198,7 +198,7 @@ Tests: Complete documentation of all tables and columns
 ### What to Submit
 
 1. **Completed Jupyter notebook:** `hw2_starter.ipynb` with all cells run
-2. File must run successfully: **Restart Kernel & Run All Cells**
+2. File must run successfully: **Restart Kernel & Run All Cells** (in VS Code: **Restart**, then **Run All**)
 3. All outputs must be visible (transformations + query results)
 4. Data dictionary must be complete
 
@@ -217,7 +217,7 @@ Tests: Complete documentation of all tables and columns
 - [ ] SQL queries return results
 - [ ] Data dictionary complete (all columns from all 3 tables)
 - [ ] Business insights included in markdown
-- [ ] Notebook runs end-to-end: **Kernel → Restart & Run All**
+- [ ] Notebook runs end-to-end: **Restart & Run All** (VS Code: **Restart**, then **Run All**)
 - [ ] File renamed to `hw2_[your_name].ipynb`
 
 **If your notebook doesn't run end-to-end, you will lose points!**

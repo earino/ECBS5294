@@ -110,7 +110,7 @@ Tests: Synthesis of multiple concepts
 ### What to Submit
 
 1. **Completed Jupyter notebook:** `hw1_starter.ipynb` with all cells run
-2. File must run successfully: **Restart Kernel & Run All Cells**
+2. File must run successfully: **Restart Kernel & Run All Cells** (in VS Code: **Restart**, then **Run All**)
 3. All outputs must be visible (queries + results)
 
 ### Submission Format
@@ -125,7 +125,7 @@ Tests: Synthesis of multiple concepts
 - [ ] All code cells run without errors
 - [ ] All query results are visible (don't clear outputs!)
 - [ ] Markdown explanations included where requested
-- [ ] Notebook runs end-to-end: **Kernel → Restart & Run All**
+- [ ] Notebook runs end-to-end: **Restart & Run All** (VS Code: **Restart**, then **Run All**)
 - [ ] File renamed to `hw1_[your_name].ipynb`
 
 **If your notebook doesn't run end-to-end, you will lose points!**

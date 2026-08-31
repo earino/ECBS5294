@@ -16,7 +16,7 @@ Before committing ANY teaching notebook or assignment:
 
 1. **Execute the entire notebook from scratch**:
    ```bash
-   jupyter nbconvert --to notebook --execute notebooks/your_notebook.ipynb --inplace --ExecutePreprocessor.timeout=300
+   uv run jupyter nbconvert --to notebook --execute notebooks/your_notebook.ipynb --inplace --ExecutePreprocessor.timeout=300
    ```
 
 2. **Verify EVERY SINGLE query returns meaningful results**:
@@ -55,7 +55,7 @@ Before committing ANY teaching notebook or assignment:
 ### Testing Checklist
 
 Before pushing any notebook:
-- [ ] Executed entire notebook from scratch (Kernel → Restart & Run All)
+- [ ] Executed entire notebook from scratch (VS Code: Restart, then Run All)
 - [ ] Verified EVERY SQL query returns rows (unless pedagogically intentional)
 - [ ] Verified EVERY code example produces visible output
 - [ ] Verified EVERY calculated column shows non-NULL values
@@ -258,7 +258,7 @@ Jupyter Notebook format 4.5 (introduced 2020) requires **unique cell IDs** for e
 - ✅ Better version control (git diffs show which cells changed)
 - ✅ Improved merge conflict resolution
 - ✅ Cell-level tracking across notebook versions
-- ✅ Compatibility with modern Jupyter tools (JupyterLab 3+, VS Code)
+- ✅ Compatibility with modern Jupyter tools (VS Code, JupyterLab 3+)
 
 **Without cell IDs:** Git diffs are noisy, merges fail, and notebooks may not load correctly in modern environments.
 
@@ -329,9 +329,9 @@ A **pre-commit hook** automatically validates notebook format before commits:
 
 ### Creating New Notebooks
 
-**Option 1: Use modern JupyterLab/VS Code (recommended)**
+**Option 1: Use VS Code (recommended)**
 ```bash
-jupyter lab  # JupyterLab 3+ automatically adds cell IDs
+code notebook.ipynb  # VS Code adds cell IDs automatically on save
 code notebook.ipynb  # VS Code with Jupyter extension
 ```
 
@@ -340,7 +340,7 @@ Modern editors automatically handle cell IDs when you save.
 **Option 2: Convert old notebooks**
 ```bash
 # Jupyter can upgrade old notebooks to nbformat 4.5
-jupyter nbconvert --to notebook --inplace old_notebook.ipynb
+uv run jupyter nbconvert --to notebook --inplace old_notebook.ipynb
 ```
 
 This adds missing cell IDs automatically.
@@ -396,25 +396,25 @@ The validation hook checks:
    - Duplicate IDs found: 'a1b2c3d4' appears 2 times
 
 Fix these issues and try again.
-Run: jupyter nbconvert --to notebook --inplace notebooks/example.ipynb
+Run: uv run jupyter nbconvert --to notebook --inplace notebooks/example.ipynb
 ```
 
 ### Common Issues & Fixes
 
 **Issue:** "Cell IDs missing" error when committing
-**Fix:** Open notebook in JupyterLab 3+ and save (auto-adds IDs), or run:
+**Fix:** Open notebook in VS Code and save (auto-adds IDs), or run:
 ```bash
-jupyter nbconvert --to notebook --inplace your_notebook.ipynb
+uv run jupyter nbconvert --to notebook --inplace your_notebook.ipynb
 ```
 
 **Issue:** "Duplicate cell ID" error
-**Fix:** Manually edit the notebook JSON to ensure unique IDs, or regenerate with JupyterLab
+**Fix:** Manually edit the notebook JSON to ensure unique IDs, or re-save in VS Code
 
 **Issue:** "Invalid ID format" (e.g., ID is too long or contains uppercase)
 **Fix:** Manually correct IDs to be exactly 8 lowercase hex characters, or regenerate
 
 **Issue:** Old nbformat version (4.4 or lower)
-**Fix:** Run `jupyter nbconvert --to notebook --inplace your_notebook.ipynb`
+**Fix:** Run `uv run jupyter nbconvert --to notebook --inplace your_notebook.ipynb`
 
 ### Why Cell IDs Were Introduced
 
@@ -436,8 +436,8 @@ jupyter nbconvert --to notebook --inplace your_notebook.ipynb
 
 ## Core Technologies
 
-- **Python 3.x** - Primary language
-- **JupyterLab or VS Code** - Development environment
+- **Python 3.13** - Primary language (pinned via `.python-version`, managed by uv)
+- **VS Code** - Development environment (Python 3.13 environment managed by uv)
 - **DuckDB** - Embedded SQL database (Python API or CLI)
 - **Git** - Version control
 
@@ -1009,15 +1009,15 @@ assignments/hw{N}/hw{N}_solution.ipynb
 
 ```bash
 # 1. Test all teaching notebooks
-jupyter nbconvert --execute --to notebook \
+uv run jupyter nbconvert --execute --to notebook \
   notebooks/day{N}_*.ipynb
 
 # 2. Test exercise starter (should run with TODOs)
-jupyter nbconvert --execute --to notebook \
+uv run jupyter nbconvert --execute --to notebook \
   notebooks/day{N}_exercise_*.ipynb
 
 # 3. Test solution (should run completely)
-jupyter nbconvert --execute --to notebook \
+uv run jupyter nbconvert --execute --to notebook \
   notebooks/day{N}_*_solution.ipynb
 
 # 4. Build slides
@@ -1408,7 +1408,7 @@ After creating/editing a notebook, verify displays are correct:
 
 1. **Execute the notebook:**
    ```bash
-   jupyter nbconvert --execute --to notebook --inplace notebook.ipynb
+   uv run jupyter nbconvert --execute --to notebook --inplace notebook.ipynb
    ```
 
 2. **Check output types:**
@@ -1427,7 +1427,7 @@ After creating/editing a notebook, verify displays are correct:
                        print("❌ Not HTML - check this cell")
    ```
 
-3. **Visual inspection:** Open notebook in JupyterLab/VS Code and verify tables are styled and readable.
+3. **Visual inspection:** Open notebook in VS Code and verify tables are styled and readable.
 
 ---
 

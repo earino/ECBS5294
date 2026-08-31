@@ -31,7 +31,7 @@ Every password is automatically saved to:
 ### For Day/Block Exercises:
 
 ```bash
-python scripts/encrypt_solutions_v2.py \
+uv run python scripts/encrypt_solutions_v2.py \
   solutions/decrypted/day1_exercise_tidy_solution.ipynb \
   --password "TidyData2024CEU!" \
   --day 1 \
@@ -42,7 +42,7 @@ python scripts/encrypt_solutions_v2.py \
 ### For Homework:
 
 ```bash
-python scripts/encrypt_solutions_v2.py \
+uv run python scripts/encrypt_solutions_v2.py \
   assignments/hw2/hw2_solution.ipynb \
   --password "TechMart2024QuickBuy!" \
   --output solutions/solutions-hw2-complete.zip \

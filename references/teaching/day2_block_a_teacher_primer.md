@@ -582,7 +582,7 @@ By the end of Block A, students will be able to:
 
 **If DuckDB won't connect:**
 - Check Python version (need 3.7+)
-- Try `pip install duckdb --upgrade`
+- Try re-running `uv sync` from the repo root
 - Worst case: use pandas only (less elegant but works)
 
 **If data files won't load:**

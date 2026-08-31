@@ -11,7 +11,7 @@
 Block B introduces students to SQL using DuckDB. This is students' **first exposure to SQL** - treat it as foundational. By the end, they should feel comfortable writing queries and understand when SQL is the right tool.
 
 **Why DuckDB?**
-- Zero setup (just pip install)
+- Zero setup (a single Python package, installed via `uv sync`)
 - Query files directly (no loading step)
 - Real performance on large files
 - Same SQL as PostgreSQL/BigQuery
@@ -437,7 +437,7 @@ Day 2 will cover:
 **If DuckDB won't install:**
 - Usually pip/Python version issue
 - Try `pip3 install duckdb`
-- Or `python -m pip install duckdb`
+- Or re-run `uv sync` from the repo root
 - Have backup: SQLite online
 
 **If query is slow:**

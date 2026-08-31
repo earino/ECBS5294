@@ -109,7 +109,7 @@ By the end of three weeks, you'll have:
 **Late work:** -10% per 24 hours (48-hour max)
 
 **Reproducibility requirement:**
-- All submissions must **"Restart & Run All"** successfully
+- All submissions must **"Restart & Run All"** successfully (VS Code: **Restart**, then **Run All**)
 - Use relative paths only
 - If it doesn't run, you'll lose points
 
@@ -201,12 +201,13 @@ We work with:
 # Tools & Setup
 
 Make sure you have:
-- ✅ Python 3.x
-- ✅ JupyterLab or VS Code
-- ✅ DuckDB (`pip install duckdb`)
+- ✅ uv (manages Python 3.13 for you)
+- ✅ VS Code (with Python + Jupyter extensions)
 - ✅ Git
 
-**Test your setup:** `notebooks/day1_setup_check.ipynb`
+**Setup:** `uv sync` in the repo root — installs Python 3.13, pandas, DuckDB, everything
+
+**Test it:** open `notebooks/day1/day1_setup_check.ipynb` in VS Code, Run All
 
 All datasets provided offline in the repo.
 
@@ -219,6 +220,7 @@ All datasets provided offline in the repo.
 ```bash
 git clone https://github.com/earino/ECBS5294.git
 cd ECBS5294
+uv sync
 ```
 
 **Or browse online:**

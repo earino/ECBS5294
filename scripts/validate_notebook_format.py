@@ -144,9 +144,9 @@ def print_validation_results(results: dict, verbose: bool = False):
 
         print("\n" + "=" * 70)
         print("\n💡 How to fix:")
-        print("   1. Open notebook in JupyterLab 3+ or VS Code")
+        print("   1. Open notebook in VS Code")
         print("   2. Save the notebook (adds cell IDs automatically)")
-        print("   3. Or run: jupyter nbconvert --to notebook --inplace <notebook>")
+        print("   3. Or run: uv run jupyter nbconvert --to notebook --inplace <notebook>")
         print("\n   See CLAUDE.md 'Notebook Format Requirements' for details.")
         print()
 
@@ -167,13 +167,13 @@ def main():
         epilog="""
 Examples:
   # Validate staged notebooks (for pre-commit hook)
-  python scripts/validate_notebook_format.py notebooks/*.ipynb
+  uv run python scripts/validate_notebook_format.py notebooks/*.ipynb
 
   # Validate all notebooks
-  python scripts/validate_notebook_format.py $(find notebooks -name "*.ipynb")
+  uv run python scripts/validate_notebook_format.py $(find notebooks -name "*.ipynb")
 
   # Validate specific notebook
-  python scripts/validate_notebook_format.py notebooks/day1_intro.ipynb
+  uv run python scripts/validate_notebook_format.py notebooks/day1_intro.ipynb
 
 Exit codes:
   0 - All notebooks valid

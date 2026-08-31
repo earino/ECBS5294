@@ -21,12 +21,12 @@ This is not optional. This is not "if time permits." This is MANDATORY.
 
 ```bash
 # 1. Execute the notebook
-jupyter nbconvert --execute --to notebook --inplace \
+uv run jupyter nbconvert --execute --to notebook --inplace \
   path/to/notebook.ipynb \
   --ExecutePreprocessor.timeout=300
 
 # 2. Check outputs for issues (utility script available!)
-python scripts/check_notebook_outputs.py path/to/notebook.ipynb
+uv run python scripts/check_notebook_outputs.py path/to/notebook.ipynb
 
 # If execution fails or outputs have issues, document and fix
 # Do NOT proceed to verification until execution succeeds
@@ -39,7 +39,7 @@ python scripts/check_notebook_outputs.py path/to/notebook.ipynb
 - Summary statistics
 
 **EXECUTION VERIFICATION CHECKLIST:**
-- [ ] Did you run `jupyter nbconvert --execute`?
+- [ ] Did you run `uv run jupyter nbconvert --execute`?
 - [ ] Did execution complete without errors?
 - [ ] Are all cells now populated with outputs?
 - [ ] Did you CHECK the outputs for empty results?
@@ -53,7 +53,7 @@ python scripts/check_notebook_outputs.py path/to/notebook.ipynb
 
 For each notebook specified (or ALL teaching notebooks if none specified):
 
-1. **🚨 EXECUTE THE NOTEBOOK FIRST** - Use `jupyter nbconvert --execute` (MANDATORY)
+1. **🚨 EXECUTE THE NOTEBOOK FIRST** - Use `uv run jupyter nbconvert --execute` (MANDATORY)
 2. **Verify execution succeeded** - Check exit code, no errors
 3. **Inspect ACTUAL outputs** - Look at what the execution produced
 4. **Launch parallel verification agents** - one agent per notebook (AFTER execution)
@@ -171,7 +171,7 @@ For each notebook, produce a report:
 
    For EACH discovered notebook:
    ```bash
-   jupyter nbconvert --execute --to notebook --inplace \
+   uv run jupyter nbconvert --execute --to notebook --inplace \
      path/to/notebook.ipynb \
      --ExecutePreprocessor.timeout=300
    ```
@@ -207,7 +207,7 @@ For each notebook, produce a report:
 
 5. **Ask user** if they want issues fixed
    - If YES: Fix all issues using NotebookEdit
-   - Re-execute notebooks with jupyter nbconvert
+   - Re-execute notebooks with uv run jupyter nbconvert
    - Verify fixes work
    - Show before/after for each fix
 
@@ -265,7 +265,7 @@ If ANY teaching example returns empty results (0 rows), this is **CRITICAL**:
 
 You've succeeded when:
 
-✅ **EXECUTED every notebook with `jupyter nbconvert --execute`** (MOST IMPORTANT)
+✅ **EXECUTED every notebook with `uv run jupyter nbconvert --execute`** (MOST IMPORTANT)
 ✅ **VERIFIED all notebooks run without errors** (checked exit codes)
 ✅ **INSPECTED actual outputs from execution** (not theoretical - REAL data)
 ✅ Every code cell in every notebook has been verified against ACTUAL outputs

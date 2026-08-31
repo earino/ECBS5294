@@ -22,14 +22,13 @@ if [ ! -d ".git" ]; then
     exit 1
 fi
 
-# Check if hook file exists in scripts directory
-if [ ! -f ".git/hooks/pre-commit" ]; then
-    echo "❌ Error: Pre-commit hook not found at .git/hooks/pre-commit"
-    echo "   The hook should have been created already"
+# Install the tracked hook from scripts/pre-commit
+if [ ! -f "scripts/pre-commit" ]; then
+    echo "❌ Error: Hook source not found at scripts/pre-commit"
     exit 1
 fi
 
-# Make hook executable
+cp scripts/pre-commit .git/hooks/pre-commit
 chmod +x .git/hooks/pre-commit
 
 echo "✅ Pre-commit hook installed and activated"
@@ -49,6 +48,6 @@ echo "     git commit -m \"test\" "
 echo "     # Should be blocked!"
 echo ""
 echo "  2. Check solution status:"
-echo "     python scripts/list_solutions.py"
+echo "     uv run python scripts/list_solutions.py"
 echo ""
 echo "✅ Setup complete!"

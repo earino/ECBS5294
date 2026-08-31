@@ -39,7 +39,7 @@ Once released, passwords will be announced in Moodle and documented in the cours
 **Option A: Using the Decryption Script (Recommended)**
 
 ```bash
-python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
+uv run python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
 ```
 
 This will prompt you for the password and extract files to `solutions/decrypted/`.
@@ -56,10 +56,10 @@ Enter the password when prompted.
 
 ### 4. Open the Solution Notebook
 
-After extraction, open the solution notebook in JupyterLab:
+After extraction, open the solution notebook in VS Code:
 
 ```bash
-jupyter lab solutions/decrypted/day1_exercise_tidy_solution.ipynb
+code solutions/decrypted/day1_exercise_tidy_solution.ipynb
 ```
 
 ## Learning Tips

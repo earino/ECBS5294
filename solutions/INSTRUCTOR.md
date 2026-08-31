@@ -40,7 +40,7 @@ Develop solution notebooks following the naming convention:
 Use the encryption script to create password-protected ZIPs:
 
 ```bash
-python scripts/encrypt_solutions.py \
+uv run python scripts/encrypt_solutions.py \
   notebooks/day1_exercise_tidy_solution.ipynb \
   --password "your-secure-password" \
   --day 1 \
@@ -56,7 +56,7 @@ This will:
 **Alternative**: Specify custom output path:
 
 ```bash
-python scripts/encrypt_solutions.py \
+uv run python scripts/encrypt_solutions.py \
   notebooks/hw1_solution.ipynb \
   --password "homework-password" \
   --output solutions/solutions-hw1.zip
@@ -106,7 +106,7 @@ After the assignment due date:
 See what solutions exist and their encryption status:
 
 ```bash
-python scripts/list_solutions.py
+uv run python scripts/list_solutions.py
 ```
 
 Output shows:
@@ -119,7 +119,7 @@ Output shows:
 Test that encrypted files work correctly:
 
 ```bash
-python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
+uv run python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
 ```
 
 Files will be extracted to `solutions/decrypted/` (gitignored).
@@ -187,8 +187,8 @@ Examples:
 **Symptom**: Pre-commit hook says "COMMIT BLOCKED! Unencrypted solution files cannot be committed"
 
 **Solution**:
-1. Run `python scripts/list_solutions.py` to see which files are unencrypted
-2. Encrypt the solution: `python scripts/encrypt_solutions.py <file> --password <pwd> --day X --block Y`
+1. Run `uv run python scripts/list_solutions.py` to see which files are unencrypted
+2. Encrypt the solution: `uv run python scripts/encrypt_solutions.py <file> --password <pwd> --day X --block Y`
 3. Unstage the unencrypted file: `git reset HEAD <file>`
 4. Stage the encrypted ZIP: `git add solutions/solutions-dayX-blockY.zip`
 5. Commit again
@@ -199,7 +199,7 @@ Examples:
 
 **Solution**:
 1. Delete the weak ZIP file
-2. Re-encrypt with the script: `python scripts/encrypt_solutions.py <source> --password <pwd> --output <zip>`
+2. Re-encrypt with the script: `uv run python scripts/encrypt_solutions.py <source> --password <pwd> --output <zip>`
 3. The script uses `zip -P` which creates proper password protection
 
 ### Can't Decrypt ZIP
@@ -240,7 +240,7 @@ If TAs are creating solutions:
 
 ### During Semester
 
-1. Run `python scripts/list_solutions.py` weekly
+1. Run `uv run python scripts/list_solutions.py` weekly
 2. Verify no unencrypted solutions in repo
 3. Keep `PASSWORDS.md` updated
 4. Back up `PASSWORDS.md` securely (outside repo)
@@ -255,7 +255,7 @@ If TAs are creating solutions:
 
 - Check git hook logs: `.git/hooks/pre-commit`
 - Review encryption log: `solutions/.encryption_log.txt`
-- Test scripts individually: `python scripts/<script>.py --help`
+- Test scripts individually: `uv run python scripts/<script>.py --help`
 - Consult CLAUDE.md for Claude Code assistance
 
 ---
