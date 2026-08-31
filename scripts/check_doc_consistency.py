@@ -45,6 +45,18 @@ YEAR_CONTEXT_ALLOW = re.compile(
 
 PATH_RE = re.compile(r"`((?:data|scripts|notebooks|assignments|references|solutions)/[A-Za-z0-9_\-./{}*\[\]]+)`")
 
+# Paths that are deliberately gitignored (instructor-local files): they
+# exist on the instructor's machine but never in a fresh checkout, so
+# docs may legitimately reference them.
+LOCAL_ONLY_PREFIXES = (
+    "solutions/PASSWORDS.md",
+    "solutions/.password_backup.json",
+    "solutions/.encryption_log.txt",
+    "solutions/decrypted",
+    "references/teaching",  # moved to the private instructor repo; the pointer README names it
+    "assignments/final_exam",
+)
+
 
 def tracked_markdown() -> list[str]:
     out = subprocess.run(["git", "ls-files", "*.md"], capture_output=True,
@@ -71,6 +83,8 @@ def main() -> int:
                 # skip glob/template/placeholder patterns and ellipses
                 if any(ch in ref for ch in "*{}[]") or "..." in ref \
                         or re.search(r"(hw|day)N\b|file\.csv|your_", ref):
+                    continue
+                if ref.rstrip("/").startswith(LOCAL_ONLY_PREFIXES):
                     continue
                 # a path may be repo-root-relative OR relative to the doc
                 if not (REPO_ROOT / ref).exists() \
