@@ -287,7 +287,7 @@ After assignment deadline:
 2. Post on Moodle (not email!)
 3. Test decryption first:
    ```bash
-   python scripts/decrypt_solution.py solutions/solutions-hwX.zip
+   uv run python scripts/decrypt_solutions_zip.py solutions/solutions-hwX.zip
    ```
 
 ---
@@ -339,7 +339,7 @@ python scripts/verify_password_health.py
 
 ```bash
 # Test decryption
-python scripts/decrypt_solution.py solutions/solutions-hwX.zip
+python scripts/decrypt_solutions_zip.py solutions/solutions-hwX.zip
 
 # Verify password documented
 cat solutions/PASSWORDS.md | grep hwX

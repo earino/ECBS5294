@@ -217,7 +217,7 @@ solutions/.encryption_log.txt
 
 - **`scripts/clear_notebook_outputs.py`** - Clear outputs from Jupyter notebooks (manual use)
 - **`scripts/encrypt_solutions.py`** - Create password-protected solution ZIPs
-- **`scripts/decrypt_solution.py`** - Extract encrypted solutions (instructor/TA use)
+- **`scripts/decrypt_solutions_zip.py`** - Extract encrypted solutions (instructor/TA use)
 - **`scripts/list_solutions.py`** - Show status of all solutions (encrypted vs unencrypted)
 - **`scripts/setup_hooks.sh`** - Install git pre-commit hook
 
@@ -1593,7 +1593,6 @@ git clone https://github.com/earino/ECBS5294.git
 
 **Instructor contact:**
 - Email: RubiaE@ceu.edu
-- WhatsApp: +34 654 69 13 63
 - Office: Room A104
 - Office hours: By appointment
 
@@ -1617,7 +1616,7 @@ git clone https://github.com/earino/ECBS5294.git
 - [ ] Passwords documented in `solutions/PASSWORDS.md` (gitignored)
 - [ ] `python scripts/list_solutions.py` shows all solutions encrypted
 - [ ] Pre-commit hook is active and passes
-- [ ] Decryption tested: `python scripts/decrypt_solution.py solutions/solutions-*.zip`
+- [ ] Decryption tested: `uv run python scripts/decrypt_solutions_zip.py solutions/solutions-*.zip`
 
 ### Slides
 - [ ] Slides build without errors: `./scripts/build_slides.sh`

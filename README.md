@@ -118,7 +118,7 @@ ECBS5294/
 │   └── teaching/              # Teacher notes (for your benefit!)
 │
 ├── scripts/                 # Utility scripts
-│   ├── decrypt_solution.py    # Extract encrypted solutions
+│   ├── decrypt_solutions_zip.py    # Extract encrypted solutions
 │   ├── encrypt_solutions.py   # (Instructor use)
 │   └── build_slides.sh        # Generate HTML slides from Markdown
 │
@@ -155,7 +155,7 @@ ECBS5294/
 2. **Check Moodle for password release dates** – Posted after deadlines
 3. **Decrypt when available:**
    ```bash
-   python scripts/decrypt_solution.py solutions/solutions-day1-blockA.zip
+   uv run python scripts/decrypt_solutions_zip.py solutions/solutions-day1-blockA.zip
    ```
 4. **Learn, don't copy** – Type out solutions to build muscle memory
 
@@ -246,7 +246,7 @@ ECBS5294/
 2. Check the quick references
 3. Read error messages carefully
 4. Start simpler (remove complexity, then add back)
-5. **Ask for help!** Office hours, email, WhatsApp
+5. **Ask for help!** Office hours, email
 
 ---
 
@@ -308,7 +308,6 @@ By the end, you'll feel confident tackling real data problems, not just textbook
 
 - **Office hours:** By appointment (Room A104)
 - **Email:** RubiaE@ceu.edu
-- **WhatsApp:** +34 654 69 13 63
 - **In class:** Ask questions! Everyone else probably has the same question.
 
 **Rule of thumb:** If you're stuck for more than 15 minutes, reach out.
