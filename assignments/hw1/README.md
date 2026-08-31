@@ -374,7 +374,6 @@ By the end, you should feel confident writing SQL to answer business questions o
 **Course Materials:**
 - Teaching notebooks: `notebooks/day1_block_b_01_sql_foundations.ipynb`, `02_aggregations.ipynb`, `03_window_functions.ipynb`
 - SQL Quick Reference: `references/sql_quick_reference.md`
-- Teacher Primer: `references/teaching/day1_block_b_teacher_primer.md`
 
 **DuckDB Documentation:**
 - SQL Introduction: https://duckdb.org/docs/sql/introduction

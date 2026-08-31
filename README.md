@@ -213,7 +213,6 @@ ECBS5294/
 
 ### Teaching Materials
 - All notebooks in `notebooks/` – worked examples with explanations
-- `references/teaching/` – Teacher notes (these show you what's important!)
 
 ---
 

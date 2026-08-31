@@ -702,7 +702,7 @@ python scripts/encrypt_solutions.py \
 
 #### 6. Create Teacher Primer
 
-**Location:** `references/teaching/day{N}_block_{a|b}_teacher_primer.md`
+**Location:** the private `ECBS5294-instructor` repo, `teaching/day{N}_block_{a|b}_teacher_primer.md`
 
 **Purpose:** Guidance for the instructor (or future you)
 
@@ -738,7 +738,7 @@ python scripts/encrypt_solutions.py \
 [How this builds toward future days]
 ```
 
-**Example:** See `references/teaching/day1_block_a_teacher_primer.md`
+**Example:** See `teaching/day1_block_a_teacher_primer.md` in the private ECBS5294-instructor repo
 
 #### 7. Create Optional Block Intro Slides
 
@@ -1048,7 +1048,7 @@ git status | grep solution
 ```bash
 # Commit teaching materials
 git add notebooks/day{N}_block_*
-git add references/teaching/day{N}_*
+# (teacher primers are committed in the private ECBS5294-instructor repo)
 git commit -m "Add Day {N} teaching materials: {topics}"
 
 # Commit exercise and encrypted solution
@@ -1101,7 +1101,7 @@ slides/day{N}_block_{a|b}_intro.md        # Block intro (optional)
 ### References
 ```
 references/{topic}_quick_reference.md     # Student cheat sheet
-references/teaching/day{N}_block_{a|b}_teacher_primer.md  # Instructor guide
+# Instructor guides: private ECBS5294-instructor repo (teaching/)
 references/datasets/{source}_info.md      # Dataset provenance notes
 references/papers/{paper}_summary.md      # Academic paper summaries
 ```
