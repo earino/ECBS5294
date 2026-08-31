@@ -2,7 +2,7 @@
 
 **Academic year:** 2026–2027  
 **Credits:** 1.0 (600 minutes; runs alongside Coding 1 and Data Science 1\)  
-**Dates / Time:** **TBD**, **TBD**, **TBD** *(update at term start)*  
+**Dates / Time:** **Mon Oct 5**, **Mon Oct 12**, **Mon Oct 19**  
 **Meeting blocks:** 13:30–15:10 and 15:30–17:10
 
 ---
@@ -111,7 +111,7 @@ By the end, students can:
 * **Homework 2 (JSON → tables mini-pipeline)** – 25%
 * **Homework 3 (end-to-end pipeline \+ KPIs \+ stakeholder note)** – 25%
 * **In-class deliverables** (short notebook write-ups, completion-based) – 5%
-* **In-class exam (paper/pen, Oct 22\)** – 25%
+* **In-class exam (paper/pen, Oct 19\)** – 25%
 
 **Department grading guidance.** The department targets a **class median around B+**, with **no more than roughly one-third** of grades at **A/A-** across sections. Final grades remain at instructor discretion within university policy.
 
@@ -125,7 +125,7 @@ By the end, students can:
 
 ## **Schedule (3 days, 2 blocks/day)**
 
-### **Day 1 — Wed Oct 8**
+### **Day 1 — Mon Oct 5**
 
 **Block A (13:30–15:10) — Data thinking & tidy foundations**
 
@@ -148,11 +148,11 @@ By the end, students can:
 
   * Mental model: windows **keep row count**; `GROUP BY` **collapses**. Minimal gotchas (explicit `ORDER BY`, simple frames).
 
-* **Assigned:** **HW1** (single-table SQL \+ 1–2 small window tasks). **Due Wed Oct 15 (start of class).**
+* **Assigned:** **HW1** (single-table SQL \+ 1–2 small window tasks). **Due Mon Oct 12 (start of class).**
 
 ---
 
-### **Day 2 — Wed Oct 15**
+### **Day 2 — Mon Oct 12**
 
 **Block A (13:30–15:10) — SQL II: joins & relational modeling**
 
@@ -164,11 +164,11 @@ By the end, students can:
 
 * REST basics (no-auth endpoint or local JSON); JSON → dict/list; normalization; persist to DuckDB; quick join to a dimension; basic typing.
 
-* **Assigned:** **HW2** (mini-pipeline: JSON → tables \+ 3–5 SQL KPIs \+ validations \+ data dictionary). **Due Wed Oct 22 (start of class).**
+* **Assigned:** **HW2** (mini-pipeline: JSON → tables \+ 3–5 SQL KPIs \+ validations \+ data dictionary). **Due Mon Oct 19 (start of class).**
 
 ---
 
-### **Day 3 — Wed Oct 22**
+### **Day 3 — Mon Oct 19**
 
 **Block A (13:30–15:10) — Data in the wild \+ mini-pipeline patterns \+ how to work**
 
@@ -196,7 +196,7 @@ By the end, students can:
 
   * **Submission:** Git-tracked repo/notebook; **Run-All** succeeds on a clean clone.
 
-  * **Due: Wed Oct 29 (23:59)** — one full week after class.
+  * **Due: Mon Nov 2 (23:59)** — two full weeks after class.
 
 ---
 
