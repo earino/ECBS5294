@@ -16,5 +16,6 @@ dependencies = [
 # (ipykernel) and to verify them from the command line (nbconvert).
 dev = [
     "ipykernel>=6.25.0,<7.0.0",
+    "nbclient>=0.10.0",
     "nbconvert>=7.0.0",
 ]

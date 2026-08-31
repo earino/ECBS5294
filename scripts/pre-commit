@@ -67,8 +67,9 @@ NOTEBOOKS_TO_VALIDATE=$(git diff --cached --name-only --diff-filter=ACM | grep '
 
 if [ -n "$NOTEBOOKS_TO_VALIDATE" ]; then
     # Run notebook format validator
-    VALIDATION_OUTPUT=$(uv run python scripts/validate_notebook_format.py $NOTEBOOKS_TO_VALIDATE 2>&1)
-    VALIDATION_EXIT_CODE=$?
+    # The || arm keeps set -e from aborting before we can print guidance
+    VALIDATION_EXIT_CODE=0
+    VALIDATION_OUTPUT=$(uv run python scripts/validate_notebook_format.py $NOTEBOOKS_TO_VALIDATE 2>&1) || VALIDATION_EXIT_CODE=$?
 
     if [ $VALIDATION_EXIT_CODE -ne 0 ]; then
         echo -e "${RED}❌ COMMIT BLOCKED: Notebook format validation failed!${NC}"
@@ -76,7 +77,7 @@ if [ -n "$NOTEBOOKS_TO_VALIDATE" ]; then
         echo "$VALIDATION_OUTPUT"
         echo ""
         echo -e "${YELLOW}To fix this:${NC}"
-        echo "  1. Open the notebook(s) in JupyterLab 3+ or VS Code"
+        echo "  1. Open the notebook(s) in VS Code"
         echo "  2. Save the notebook (adds cell IDs automatically)"
         echo "  3. Or run: uv run jupyter nbconvert --to notebook --inplace <notebook>"
         echo ""
