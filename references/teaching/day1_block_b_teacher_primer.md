@@ -435,9 +435,8 @@ Day 2 will cover:
 ### Technical Issues
 
 **If DuckDB won't install:**
-- Usually pip/Python version issue
-- Try `pip3 install duckdb`
-- Or re-run `uv sync` from the repo root
+- Usually the student is not in the course environment
+- Re-run `uv sync` from the repo root, then re-select the `.venv` kernel in VS Code
 - Have backup: SQLite online
 
 **If query is slow:**
