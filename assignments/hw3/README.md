@@ -1,7 +1,7 @@
 # Homework 3: Multi-City Data Integration & Pipeline
 
 **Course:** ECBS5294 - Introduction to Data Science: Working with Data
-**Due:** Wednesday, November 5, 23:59
+**Due:** See syllabus.md (two weeks after Day 3)
 **Total Points:** 100
 **Est. Time:** 6-8 hours over 2 weeks
 
@@ -14,7 +14,7 @@ This is your **final project** for the course. You'll demonstrate every skill yo
 **What you'll do:**
 - Ingest multi-format data (CSV + JSON)
 - Build a bronze → silver → gold pipeline
-- Normalize nested JSON
+- Ingest JSON data (wide and sparsely populated) alongside CSV
 - Write validations as code
 - Create business KPIs
 - Document for stakeholders
@@ -78,7 +78,7 @@ By completing this assignment, you will demonstrate ability to:
 
 1. **Ingest multi-format data** (CSV, JSON)
 2. **Build a multi-stage pipeline** (bronze → silver → gold)
-3. **Normalize nested JSON** into relational tables
+3. **Ingest multi-format data** (CSV + JSON) into typed relational tables
 4. **Write data validations** as assertions
 5. **Handle real-world messiness** (nulls, types, inconsistencies)
 6. **Create business KPIs** with joins and aggregations
@@ -217,7 +217,7 @@ You must write **at least 3 validations** (choose from these or create your own)
 
 1. **Primary key uniqueness**
    - Chicago: `license_id` is unique (or composite key if needed)
-   - NYC: `job__` is unique
+   - NYC: `permit_si_no` is unique (one row per permit); `job__` is NOT — one job can have many permits
 
 2. **Required fields non-null**
    - No NULLs in critical identifier columns
@@ -229,7 +229,7 @@ You must write **at least 3 validations** (choose from these or create your own)
    - Lat/lon are floats (especially NYC!)
 
 4. **Date range validation**
-   - Dates fall within reasonable ranges (e.g., 2015-2025)
+   - Dates fall within ranges you PROFILED first (query MIN/MAX before asserting — this data legitimately reaches back to 1989, and contains at least one entry-error date in the future)
    - Start dates before end dates
    - No dates in the future
 
@@ -246,7 +246,7 @@ assert df['id'].is_unique, "Duplicate IDs found!"
 assert df['id'].notna().all(), "NULL IDs found!"
 
 # Validation 3: Date range
-assert df['date'].min() >= pd.Timestamp('2015-01-01'), "Dates too old!"
+assert df['date'].max() <= pd.Timestamp.now(), "Date from the future — data entry error!"
 ```
 
 **Grading:**
@@ -344,7 +344,7 @@ Write **8-10 sentences** for non-technical executives explaining:
 **Audience:** City officials who don't know SQL but need to make policy decisions.
 
 **Example opening:**
-> "This analysis integrated 50,000 Chicago business licenses and 20,000 NYC building permits into a unified analytical database. The data shows that Chicago issues approximately 15,000 new business licenses annually, with retail and food service dominating (35% of all licenses). However, this data cannot answer questions about business closures or economic impact, as it only tracks licensing activity..."
+> "This analysis integrated 50,000 Chicago business licenses and 20,000 NYC building permits into a unified analytical database. The data shows Chicago issuing roughly 5,000-6,000 new business licenses in each fully-covered year of this extract, with retail and food service dominating. However, this data cannot answer questions about business closures or economic impact, as it only tracks licensing activity..."
 
 **Grading:**
 - 5 pts: Data dictionary complete and clear
@@ -366,7 +366,7 @@ Write **8-10 sentences** for non-technical executives explaining:
 
 - **File name:** `hw3_[your_name].ipynb` (e.g., `hw3_jane_doe.ipynb`)
 - **How:** Upload to Moodle
-- **When:** **Wednesday, November 5, 23:59** (two weeks after class)
+- **When:** the deadline in syllabus.md (two weeks after Day 3)
 
 ### Before Submitting - Checklist
 
@@ -479,7 +479,7 @@ Each component is graded on:
 
 **Total: ~10 hours over 14 days = very manageable pace**
 
-**Don't wait until November 4 to start!** Questions? Email throughout the 2 weeks.
+**Don't wait until the night before to start!** Questions? Email throughout the 2 weeks.
 
 ### Pipeline Development Strategy
 

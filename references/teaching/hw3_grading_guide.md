@@ -2,7 +2,7 @@
 
 **Assignment:** End-to-End Data Integration Project
 **Total Points:** 100
-**Due:** October 29, 23:59
+**Due:** See syllabus.md (two weeks after Day 3)
 
 ---
 
@@ -103,15 +103,14 @@ bronze_count_nyc = con.execute("SELECT COUNT(*) FROM bronze_nyc").fetchone()[0]
 - Key columns present (license_id, legal_name, license_description, etc.)
 - NULL handling documented
 
-**NYC tables (15 pts):**
-- `silver_nyc_permits` main table (10 pts)
-  - Flattened structure (no nested JSON)
-  - Correct types
-  - Primary key (permit_id or similar)
-- `silver_nyc_applicants` separate table (5 pts)
-  - Extracted applicant info
-  - Foreign key to permits
-  - One-to-many relationship
+**NYC table (15 pts):**
+- `silver_nyc_permits` (15 pts)
+  - Correct types (dates cast, lat/lon numeric)
+  - Primary key is `permit_id` (from `permit_si_no`) — 5 of these points are
+    for correctly identifying the grain: `job_number` is NOT unique (one job
+    spans many permits) and dropping "duplicate" job numbers destroys real
+    permits
+  - Key columns selected and named sensibly
 
 ✅ **Partial credit:**
 - 20 pts: Chicago perfect, NYC partially normalized
@@ -124,17 +123,19 @@ bronze_count_nyc = con.execute("SELECT COUNT(*) FROM bronze_nyc").fetchone()[0]
 - Just copied bronze (no transformations)
 
 **Common issues:**
-- NYC JSON left as nested dicts/arrays
-- Didn't separate applicants into own table
+- Asserting `job_number` uniqueness (it legitimately repeats — one job, many permits)
+- Deduplicating on `job_number` and silently discarding ~30% of the permits
 - Lat/lon kept as strings instead of floats
 - Dates kept as strings
 
 **Quick check:**
 ```python
-# Check NYC normalization
+# Check NYC grain handling
 permit_count = con.execute("SELECT COUNT(*) FROM silver_nyc_permits").fetchone()[0]
-applicant_count = con.execute("SELECT COUNT(*) FROM silver_nyc_applicants").fetchone()[0]
-# applicant_count should be >= permit_count (one-to-many)
+unique_permits = con.execute("SELECT COUNT(DISTINCT permit_id) FROM silver_nyc_permits").fetchone()[0]
+unique_jobs = con.execute("SELECT COUNT(DISTINCT job_number) FROM silver_nyc_permits").fetchone()[0]
+# permit_count == unique_permits (permit_id is the PK)
+# unique_jobs < permit_count (one job -> many permits; ~14.1k jobs over 20k permits)
 ```
 
 ---
@@ -303,7 +304,7 @@ SELECT license_id FROM silver_chicago WHERE license_id > 1000
 - Kept licenses with NULL `expiration_date` (assumed perpetual licenses)
 
 ### NYC Data
-- Separated applicants into own table because permits can have multiple applicants
+- Kept one row per permit keyed by `permit_id`; documented that `job_number` legitimately repeats (one job, many permits)
 - Converted lat/lon strings to floats, 523 rows had invalid coordinates (set to NULL)
 - Permits without valid addresses excluded from geographic analysis
 
@@ -402,8 +403,8 @@ Part 2: Bronze Layer            ____/20
 
 Part 3: Silver Normalization    ____/25
   - silver_chicago (types)      ____/10
-  - silver_nyc_permits          ____/10
-  - silver_nyc_applicants       ____/5
+  - silver_nyc_permits (types)  ____/10
+  - NYC grain/key identified    ____/5
 
 Part 4: Validations             ____/15
   - Validation 1                ____/5
@@ -446,11 +447,11 @@ _________________________________
 **Penalty:** 0-6 points (instead of 15)
 **Fix guidance:** "Validations ensure data quality. Add assertions for primary keys, non-null fields, and business rules."
 
-### 3. Not normalizing NYC JSON
-**Issue:** Left applicants as nested array
-**Impact:** Can't properly query or join
+### 3. Wrong NYC grain
+**Issue:** Treated `job_number` as the primary key — asserted its uniqueness or deduplicated on it
+**Impact:** Either a failing validation, or ~30% of real permits silently discarded
 **Penalty:** -5 to -10 points
-**Fix guidance:** "Extract applicant array into separate table with foreign key back to permits."
+**Fix guidance:** "One job can carry many permits. The unique key is `permit_si_no` (permit_id); validate THAT, and document the one-to-many job->permit relationship."
 
 ### 4. Weak gold layer
 **Issue:** Just SELECT * queries, no aggregation

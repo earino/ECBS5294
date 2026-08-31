@@ -12,7 +12,7 @@ This data pack contains **real government data** from two major US cities' open 
 
 **Total Records:** ~70,000 records across 2 datasets
 **Formats:** CSV + JSON (demonstrating multi-format integration)
-**Time Period:** Recent data (2020s)
+**Time Period:** Chicago: predominantly 2020s. NYC: bulk of filings in the 2020s with a legitimate tail back to 1989 — and at least one obviously erroneous future date (a `job_start_date` in the year 2222). Profile before you assert!
 **Use Case:** Policy analysis, regulatory compliance, business intelligence
 
 ---
@@ -132,7 +132,8 @@ Department of Buildings (DOB) permit issuance records for construction, renovati
 | `bin__` | String | Building Identification Number |
 | `house__` | String | House number |
 | `street_name` | String | Street name |
-| `job__` | String | Job number (unique identifier) |
+| `permit_si_no` | String | Permit sequence ID — the UNIQUE identifier of each permit row [PK] |
+| `job__` | String | Job number — NOT unique: one job can have many permits (see `permit_si_no` for the unique per-permit key) |
 | `job_type` | String | Type of work (A1=major alteration, NB=new building, etc.) |
 | `block` | String | Tax block |
 | `lot` | String | Tax lot |
