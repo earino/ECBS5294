@@ -14,7 +14,7 @@ This assignment tests your understanding of SQL fundamentals:
 - Aggregations (GROUP BY, HAVING)
 - Window functions (ROW_NUMBER, LAG, moving averages)
 
-You'll work with **525,461 real transactions** from an online retail company. This is real-scale data - you'll see why SQL + DuckDB matters for data analysis!
+You'll work with **525,461 real invoice line items** — 28,816 customer transactions (invoices) from an online retail company, where each row is one product on one invoice. This is real-scale data - you'll see why SQL + DuckDB matters for data analysis!
 
 ---
 
@@ -37,7 +37,8 @@ By completing this assignment, you will demonstrate ability to:
 UK-based online retail company specializing in unique all-occasion gifts. Data covers Dec 2009 - Dec 2010 (1 year).
 
 ### Size
-- **525,461 transactions**
+- **525,461 rows** — each row is one *invoice line item* (one product on one invoice)
+- **28,816 invoices** (transactions) — most invoices span many rows
 - 8 columns
 - Date range: 2009-12-01 to 2010-12-09
 - Multiple countries, ~4,000 customers
@@ -46,11 +47,11 @@ UK-based online retail company specializing in unique all-occasion gifts. Data c
 
 | Column | Type | Description | Notes |
 |--------|------|-------------|-------|
-| `Invoice` | Text | Invoice number (6-digit)| Prefix 'C' indicates cancellation |
+| `Invoice` | Text | Invoice number (6-digit) — one invoice = one checkout, spanning many rows | Prefix 'C' indicates cancellation |
 | `StockCode` | Text | Product code | 5-6 characters |
 | `Description` | Text | Product name | ~2,900 NULLs (0.6%) |
 | `Quantity` | Integer | Number of items | Can be negative (returns) |
-| `InvoiceDate` | Datetime | Transaction timestamp | |
+| `InvoiceDate` | Datetime | Invoice timestamp (shared by every line on the invoice) | |
 | `Price` | Float | Price per unit (GBP) | |
 | `Customer ID` | Float | Customer identifier | ~107,000 NULLs (20.5%) - guest checkouts |
 | `Country` | Text | Customer country | 38 different countries |
@@ -63,10 +64,10 @@ UK-based online retail company specializing in unique all-occasion gifts. Data c
 - You'll need to handle these appropriately in your queries!
 
 **Negative Quantities:**
-- Some transactions have negative quantities (returns/cancellations)
+- Some line items have negative quantities (returns/cancellations)
 - Check if your business question should include or exclude these
 
-**Cancelled Transactions:**
+**Cancelled Invoices:**
 - Invoices starting with 'C' are cancellations
 - Consider whether to include or exclude them
 
@@ -203,7 +204,7 @@ Each question is graded on:
 -- ✅ Good: Uppercase keywords, indented, clear
 SELECT
     Country,
-    COUNT(*) AS transaction_count,
+    COUNT(DISTINCT Invoice) AS invoice_count,
     SUM(Quantity * Price) AS revenue
 FROM retail
 WHERE Price IS NOT NULL

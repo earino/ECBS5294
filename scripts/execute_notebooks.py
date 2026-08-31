@@ -69,7 +69,12 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         out_dir = Path(tmp)
         for nb_path in notebooks:
-            rel = nb_path.relative_to(REPO_ROOT)
+            # Notebooks outside the repo (e.g. decrypted solutions in a temp
+            # dir) are addressed by absolute path
+            try:
+                rel = nb_path.relative_to(REPO_ROOT)
+            except ValueError:
+                rel = nb_path
             if str(rel).replace("\\", "/") in SKIP_INTENTIONAL_TODO:
                 print(f"Skipping {rel} (intentional TODO scaffolding)")
                 continue
