@@ -188,11 +188,11 @@ ECBS5294/
 
 | Component | Weight | What It Tests |
 |-----------|--------|---------------|
-| **Homework 1** (SQL + windows) | 20% | Query writing, aggregations, window functions |
-| **Homework 2** (JSON pipeline) | 25% | Data ingestion, normalization, persistence |
-| **Homework 3** (End-to-end) | 25% | Complete pipeline with validation + communication |
+| **Homework 1** (SQL + windows) | 15% | Query writing, aggregations, window functions |
+| **Homework 2** (JSON pipeline) | 15% | Data ingestion, normalization, persistence |
+| **Homework 3** (End-to-end) | 15% | Complete pipeline with validation + communication |
 | **In-class deliverables** | 5% | Short exercises (completion-based) |
-| **In-class exam** (Day 3) | 25% | SQL, joins, data thinking (paper/pen, closed-book) |
+| **In-class exam** (Day 3) | 50% | SQL, joins, data thinking (paper/pen, closed-book) |
 
 **Late policy:** −10% per 24 hours (48-hour max)  
 **Median target:** B+ (roughly ⅓ of class at A/A-)
