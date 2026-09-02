@@ -621,7 +621,7 @@ print("Trend shows stable business formation with slight growth 2020-2023.")
 ### Violations
 
 Academic integrity violations will result in:
-- Zero on the assignment (25% of course grade)
+- Zero on the assignment (15% of course grade)
 - Potential course-level consequences
 - Report to university administration
 

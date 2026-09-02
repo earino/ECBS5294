@@ -107,11 +107,11 @@ By the end, students can:
 
 ## **Course assessment and grading**
 
-* **Homework 1 (SQL single-table \+ window primer)** – 20%
-* **Homework 2 (JSON → tables mini-pipeline)** – 25%
-* **Homework 3 (end-to-end pipeline \+ KPIs \+ stakeholder note)** – 25%
+* **Homework 1 (SQL single-table \+ window primer)** – 15%
+* **Homework 2 (JSON → tables mini-pipeline)** – 15%
+* **Homework 3 (end-to-end pipeline \+ KPIs \+ stakeholder note)** – 15%
 * **In-class deliverables** (short notebook write-ups, completion-based) – 5%
-* **In-class exam (paper/pen, Oct 19\)** – 25%
+* **In-class exam (paper/pen, Oct 19\)** – 50%
 
 **Department grading guidance.** The department targets a **class median around B+**, with **no more than roughly one-third** of grades at **A/A-** across sections. Final grades remain at instructor discretion within university policy.
 

@@ -93,11 +93,11 @@ By the end of three weeks, you'll have:
 
 | Component | Weight |
 |-----------|--------|
-| Homework 1 (SQL basics) | 20% |
-| Homework 2 (JSON pipeline) | 25% |
-| Homework 3 (End-to-end) | 25% |
+| Homework 1 (SQL basics) | 15% |
+| Homework 2 (JSON pipeline) | 15% |
+| Homework 3 (End-to-end) | 15% |
 | In-class deliverables | 5% |
-| In-class exam (Day 3) | 25% |
+| In-class exam (Day 3) | 50% |
 
 **Target median:** B+ (roughly ⅓ at A/A-)
 
