@@ -338,4 +338,18 @@ Ready? Open up `notebooks/day1/day1_setup_check.ipynb` in VS Code and let's make
 
 ---
 
+## 📄 License
+
+Course materials are released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) (Creative Commons Attribution 4.0 International) — see [`LICENSE.md`](LICENSE.md).
+
+You are free to:
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material for any purpose, including commercially
+
+…as long as you give appropriate credit.
+
+**Datasets are the exception.** Files under `data/` are third-party works redistributed for teaching, and each keeps its original license — several carry NonCommercial and/or ShareAlike terms that this repo cannot relax. See `LICENSE.md` for the per-dataset breakdown and the `README.md` in each `data/` subdirectory for full attribution.
+
+---
+
 *Questions about this README or the course? Contact the instructor.*
