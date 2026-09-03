@@ -1,4 +1,4 @@
-# ECBS5294 — Introduction to Data Science: Working with Data
+# ECBS5294 — Data Science 2: Working with Data
 
 **Program:** MSBA (core) · **Credits:** 1.0 · **Academic year:** 2026–2027  
 **Format:** 3 sessions × 2 blocks of 100 minutes (13:30–15:10, 15:30–17:10), with the final exam in the last block  
@@ -10,7 +10,7 @@
 
 Real data arrives messy. Types are wrong, values are missing in three different notations, there is no obvious key, and the interesting part is buried in nested JSON that nobody documented. The analysis you actually want to run is rarely the hard part — getting the data into a shape where that analysis is possible, and being able to show the shape is right, is where the work goes.
 
-This course is one credit of practical instruction in exactly that layer. You will learn to structure tables so they can be joined and trusted, to query them in SQL with DuckDB, to turn JSON and API responses into tidy tables, and to build a small pipeline whose correctness you can demonstrate rather than assert. It is a core MSBA course, running alongside Coding 1 and Data Science 1, and it is what the Data Engineering and analytics electives are built on top of. These are day-one skills in analyst and data science roles.
+This course is one credit of practical instruction in exactly that layer. You will learn to structure tables so they can be joined and trusted, to query them in SQL with DuckDB, to turn JSON and API responses into tidy tables, and to build a small pipeline whose correctness you can demonstrate rather than assert. It is a core MSBA course, following Data Science 1 and running alongside Coding 1, and it is what the Data Engineering and analytics electives are built on top of. These are day-one skills in analyst and data science roles.
 
 ---
 
@@ -47,7 +47,7 @@ Optional background: A. Turrell, *Coding for Economists* (selected chapters); Th
 
 ## AI policy
 
-AI assistants — ChatGPT, Claude, Copilot, and the rest — are **not permitted for graded work**: the three homeworks, the in-class deliverables, and the exam. Coding 1 and Data Science 1 run in parallel with this course and share this policy, so there is one rule to keep track of rather than three.
+AI assistants — ChatGPT, Claude, Copilot, and the rest — are **not permitted for graded work**: the three homeworks, the in-class deliverables, and the exam. Coding 1 and Data Science 1 share this policy, so there is one rule to keep track of rather than three.
 
 You may use AI freely for personal study: explaining a concept, working through an example that is not your submission. Do not submit AI-generated code or text. The exam is on paper, which is the honest check on all of this — in the end the skills have to be yours.
 

@@ -1,6 +1,6 @@
 # API Pipeline Quick Reference Card
 
-**ECBS5294 - Introduction to Data Science: Working with Data**
+**ECBS5294 - Data Science 2: Working with Data**
 
 **Purpose:** Production patterns for building robust API ingestion pipelines.
 

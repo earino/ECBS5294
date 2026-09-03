@@ -1,6 +1,6 @@
 # SQL Whiteboard Interview Simulations
 
-**ECBS5294: Introduction to Data Science: Working with Data**
+**ECBS5294: Data Science 2: Working with Data**
 
 ---
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a course repository for **ECBS5294: Introduction to Data Science: Working with Data** at Central European University. The course focuses on practical data literacy: tidy data principles, SQL with DuckDB, JSON/API ingestion, and reproducible multi-stage pipelines.
+This is a course repository for **ECBS5294: Data Science 2: Working with Data** at Central European University. The course focuses on practical data literacy: tidy data principles, SQL with DuckDB, JSON/API ingestion, and reproducible multi-stage pipelines.
 
 ## 🚨 CRITICAL: TESTING REQUIREMENT
 
@@ -828,7 +828,7 @@ Open the teaching notebook:
 ```markdown
 # {Topic} Quick Reference Card
 
-**ECBS5294 - Introduction to Data Science: Working with Data**
+**ECBS5294 - Data Science 2: Working with Data**
 
 ---
 

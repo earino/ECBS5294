@@ -51,7 +51,7 @@ def add_code_cell(content):
 add_markdown_cell("""# Day 3, Block A: Data Pipelines & Real-World Validation
 
 **Duration:** 100 minutes (13:30–15:10)
-**Course:** ECBS5294 - Introduction to Data Science: Working with Data
+**Course:** ECBS5294 - Data Science 2: Working with Data
 **Instructor:** Eduardo Ariño de la Rubia
 
 ---

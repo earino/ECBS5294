@@ -1,6 +1,6 @@
 # SQL Joins Quick Reference Card
 
-**ECBS5294 - Introduction to Data Science: Working with Data**
+**ECBS5294 - Data Science 2: Working with Data**
 **Day 2, Block A**
 
 ---

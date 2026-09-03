@@ -9,7 +9,7 @@ footer: 'Central European University'
 <!-- _class: lead -->
 <!-- _paginate: false -->
 
-# Introduction to Data Science
+# Data Science 2
 ## Working with Data
 
 **ECBS5294**
@@ -118,7 +118,7 @@ By the end of three weeks, you'll have:
 
 # Academic Integrity ⚠️
 
-To align with parallel courses (Coding 1, Data Science 1):
+To align with Coding 1 and Data Science 1:
 
 ❌ **AI tools NOT permitted** for graded work
    - No ChatGPT, Claude, Copilot for homework/exam

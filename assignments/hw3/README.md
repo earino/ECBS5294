@@ -1,6 +1,6 @@
 # Homework 3: Multi-City Data Integration & Pipeline
 
-**Course:** ECBS5294 - Introduction to Data Science: Working with Data
+**Course:** ECBS5294 - Data Science 2: Working with Data
 **Due:** See syllabus.md (two weeks after Day 3)
 **Total Points:** 100
 **Est. Time:** 6-8 hours over 2 weeks

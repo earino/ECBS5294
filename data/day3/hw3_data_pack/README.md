@@ -1,6 +1,6 @@
 # HW3 Data Pack: Multi-City Business & Permitting Data
 
-**Course:** ECBS5294 - Introduction to Data Science: Working with Data
+**Course:** ECBS5294 - Data Science 2: Working with Data
 **Assignment:** Homework 3 - End-to-End Data Integration Project
 **Data Sources:** Chicago Data Portal + NYC Open Data
 

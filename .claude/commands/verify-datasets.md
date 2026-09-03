@@ -4,7 +4,7 @@ description: Comprehensive verification of course datasets for pedagogical sound
 
 # Dataset Verification Command
 
-You are verifying datasets for **ECBS5294: Introduction to Data Science: Working with Data**.
+You are verifying datasets for **ECBS5294: Data Science 2: Working with Data**.
 
 **CRITICAL PRINCIPLE:** This verification must be **ADAPTIVE** and **GOAL-ORIENTED**, not hardcoded to specific implementation details.
 

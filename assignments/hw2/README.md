@@ -1,6 +1,6 @@
 # Homework 2: TechMart Acquisition Data Integration
 
-**Course:** ECBS5294 - Introduction to Data Science: Working with Data
+**Course:** ECBS5294 - Data Science 2: Working with Data
 **Due:** Day 3, Start of Class
 **Total Points:** 100
 **Est. Time:** 3-4 hours

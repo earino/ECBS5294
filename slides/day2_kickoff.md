@@ -11,7 +11,7 @@ footer: 'ECBS5294 | CEU'
 # Day 2
 ## Connecting Data & Ingesting APIs
 
-**ECBS5294 - Introduction to Data Science: Working with Data**
+**ECBS5294 - Data Science 2: Working with Data**
 
 Central European University
 

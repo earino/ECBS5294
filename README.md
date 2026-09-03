@@ -1,4 +1,4 @@
-# ECBS5294: Introduction to Data Science: Working with Data
+# ECBS5294: Data Science 2: Working with Data
 
 [![CI](https://github.com/earino/ECBS5294/actions/workflows/ci.yml/badge.svg)](https://github.com/earino/ECBS5294/actions/workflows/ci.yml)
 
@@ -33,7 +33,7 @@ By the end, you'll handle 500K-row datasets, write production-quality queries, a
 **Office Hours:** [Schedule at cal.com/earino](https://cal.com/earino)
 
 **Format:** Three full-day sessions (2 blocks per day)  
-**Credits:** 1.0 (runs alongside Coding 1 and Data Science 1)
+**Credits:** 1.0 (follows Data Science 1; runs alongside Coding 1)
 
 📄 **Full syllabus with dates:** [syllabus.md](syllabus.md)
 
@@ -265,7 +265,7 @@ ECBS5294/
 
 **Why?** We need to assess YOUR understanding so we can help where you're stuck.
 
-**Policy:** To align with parallel courses (Coding 1, Data Science 1), AI assistants are not permitted for homework or exams. Use them for personal study only.
+**Policy:** To align with Coding 1 and Data Science 1, AI assistants are not permitted for homework or exams. Use them for personal study only.
 
 ---
 

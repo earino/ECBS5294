@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Repository Overview
 
-**Course:** ECBS5294: Introduction to Data Science: Working with Data at CEU
+**Course:** ECBS5294: Data Science 2: Working with Data at CEU
 **Focus:** Practical data literacy - tidy data, SQL with DuckDB, JSON/API ingestion, reproducible pipelines
 **Context:** MSBA course - frame everything with business value
 

@@ -1,6 +1,6 @@
 # HW2 Stakeholder Communication Excellence Guide
 
-**Course:** ECBS5294 - Introduction to Data Science: Working with Data
+**Course:** ECBS5294 - Data Science 2: Working with Data
 **Assignment:** Homework 2 - TechMart QuickBuy Acquisition
 **Purpose:** Model stakeholder communications for data analysis
 
