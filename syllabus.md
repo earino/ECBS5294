@@ -1,7 +1,7 @@
 # ECBS5294 — Introduction to Data Science: Working with Data
 
-**Program:** MSBA (core) · **Credits:** 1.0 · **Academic year:** 2026–2027
-**Format:** 3 sessions × 2 blocks of 100 minutes (13:30–15:10, 15:30–17:10), with the final exam in the last block
+**Program:** MSBA (core) · **Credits:** 1.0 · **Academic year:** 2026–2027  
+**Format:** 3 sessions × 2 blocks of 100 minutes (13:30–15:10, 15:30–17:10), with the final exam in the last block  
 **Instructor:** Eduardo Ariño de la Rubia · [RubiaE@ceu.edu](mailto:RubiaE@ceu.edu) · Room A104 · [office hours](https://cal.com/earino)
 
 ---
