@@ -1,211 +1,110 @@
-# **(ECBS5294) Introduction to Data Science: Working with Data**
+# ECBS5294 — Introduction to Data Science: Working with Data
 
-**Academic year:** 2026–2027  
-**Credits:** 1.0 (600 minutes; runs alongside Coding 1 and Data Science 1\)  
-**Dates / Time:** **Mon Oct 5**, **Mon Oct 12**, **Mon Oct 19**  
-**Meeting blocks:** 13:30–15:10 and 15:30–17:10
-
----
-
-## **Background and overall aim**
-
-**Content.** Practical literacy for working with data: tidy tables and keys, types and missing values, essential **SQL** with **DuckDB**, turning **JSON/APIs** into analysis-ready tables, and simple multi-stage pipeline habits (raw → clean → analysis) with light validations-as-code and stakeholder-focused communication.
-
-**Relevance.** These skills are day-one requirements in analyst/DS roles and prepare students for Data Engineering and advanced analytics.
+**Program:** MSBA (core) · **Credits:** 1.0 · **Academic year:** 2026–2027
+**Format:** 3 sessions × 2 blocks of 100 minutes (13:30–15:10, 15:30–17:10), with the final exam in the last block
+**Instructor:** Eduardo Ariño de la Rubia · [RubiaE@ceu.edu](mailto:RubiaE@ceu.edu) · Room A104 · [office hours](https://cal.com/earino)
 
 ---
 
-## **Course prerequisites**
+## What this course is for
 
-* None.  
-* Bring a laptop to all meetings.
+Real data arrives messy. Types are wrong, values are missing in three different notations, there is no obvious key, and the interesting part is buried in nested JSON that nobody documented. The analysis you actually want to run is rarely the hard part — getting the data into a shape where that analysis is possible, and being able to show the shape is right, is where the work goes.
 
----
-
-## **Waiting list handling (priority)**
-
-This is a **core** MSBA course. If oversubscribed, seats and the waiting list will be managed with the following **priority order**:
-
-1. **MSBA students (core)**  
-2. **EDP/Data track students**  
-3. **All other students** (space permitting)
-
-Within each priority group, places will be offered in order of sign-up and subject to program rules.
+This course is one credit of practical instruction in exactly that layer. You will learn to structure tables so they can be joined and trusted, to query them in SQL with DuckDB, to turn JSON and API responses into tidy tables, and to build a small pipeline whose correctness you can demonstrate rather than assert. It is a core MSBA course, running alongside Coding 1 and Data Science 1, and it is what the Data Engineering and analytics electives are built on top of. These are day-one skills in analyst and data science roles.
 
 ---
 
-## **Learning outcomes**
+## What you will be able to do
 
-By the end, students can:
-
-1. Apply **tidy data** principles; identify/construct **UID/primary keys**; manage types (dates, floats, booleans) and missing values.
-
-2. Query with **DuckDB/SQL**: `SELECT`, `WHERE`, `ORDER BY`, **aggregations** (`GROUP BY/HAVING`), **JOINs** (INNER/LEFT/RIGHT/FULL), and handle `NULL` correctly.
-
-3. Use a **window functions primer** for common analytics: `ROW_NUMBER()` (latest/dedupe), `LAG()` (period change), and a simple moving average.
-
-4. Ingest **JSON** (file or simple endpoint), normalize nested structures into tidy tables, and **persist** to DuckDB.
-
-5. Build a small, **reproducible** pipeline (bronze → silver → gold) with 2–3 **validations as code** (e.g., PK uniqueness, required non-nulls, date window).
-
-6. Communicate results clearly with concise tables/metrics and a short data dictionary, noting assumptions and limits.
-
-7. Demonstrate basic **performance intuition** (join cardinality and row explosion, aggregation before joining).
+1. **Structure data so it can be trusted** — tidy tables, an explicit primary key, correct types, and a documented decision about what the missing values mean.
+2. **Query relational data with SQL** — filter, calculate, aggregate, and group, and know what `NULL` does to each of those.
+3. **Join tables without corrupting the result** — choose the join the question calls for, and recognize when a join has silently inflated your row count.
+4. **Use window functions for common analytics** — the latest record per entity, period-over-period change, and a moving average.
+5. **Turn JSON into tables** — normalize nested structures from a file or an endpoint, and persist them to a database.
+6. **Build a small reproducible pipeline** — raw to clean to analysis-ready, with validations written as code rather than checked by eye.
+7. **Communicate a result to a stakeholder** — the metric, the assumptions behind it, and an honest account of what the data cannot answer.
+8. **Reason about cost** — why aggregating before joining matters once the tables stop being small.
 
 ---
 
-## **Counting towards degree**
+## Format and workload
 
-* Core to **MSBA**; complements **Coding 1 (Intro to Python)** and **Data Science 1 (Reproducible Research/Git)** taught in parallel.
+Each session runs two 100-minute blocks with a break between: teaching interleaved with hands-on work in notebooks you run yourself, on a laptop you bring. Most blocks close with a short in-class deliverable — a notebook you finish and submit, graded on completion — so that the ideas land while you can still ask about them. Come with your environment working; class time is not setup time.
 
-* Preparation for **Data Engineering** and analytics electives.
-
----
-
-## **Technical requirements**
-
-* **Software:** Python 3.13 (managed by uv), VS Code, DuckDB (installed via the course environment), Git.
-* **Course repository:** https://github.com/earino/ECBS5294
-  * Clone before Day 1: `git clone https://github.com/earino/ECBS5294.git`
-  * Contains: `/data`, `/notebooks`, `/assignments`, `/scripts`, `/solutions`, `/references`
-* All teaching datasets are provided **offline**.
+All teaching datasets are provided offline in the course repository. Nothing in this course depends on a network connection or on somebody's API being up.
 
 ---
 
-## **Course resources**
+## Prerequisites and setup
 
-* **Moodle:** https://ceulearning.ceu.edu/course/view.php?id=19138
-  * Announcements and updates
-  * Assignment submissions
-  * Solution password releases (after due dates)
-  * Discussion forum
-  * Grades
+No prior SQL or database experience is assumed. Bring a laptop to every session.
 
-* **GitHub repository:** https://github.com/earino/ECBS5294
-  * All course materials (notebooks, datasets, assignments)
-  * Teaching references and documentation
-  * Encrypted solutions (passwords on Moodle)
+The course uses the MSBA-standard stack from the program prep session — Python 3.13 managed by `uv`, VS Code, and Git — plus DuckDB, which installs with the course environment. **Before Session 1**, clone the course repository at <https://github.com/earino/ECBS5294>, run `uv sync`, then open `notebooks/day1/day1_setup_check.ipynb` in VS Code and run it; every check should pass. The repository README covers setup in full, and quick references for SQL, joins, and pipeline patterns live in `references/`.
+
+Optional background: A. Turrell, *Coding for Economists* (selected chapters); The Carpentries lessons on the Unix shell, Git, and Python; and the DuckDB documentation.
 
 ---
 
-## **Materials and references**
+## AI policy
 
-* A. Turrell, *Coding for Economists* (selected chapters).  
-* The Carpentries (Unix shell, Git, Python — selected episodes).  
-* DuckDB docs (CSV/Parquet querying, SQL reference).  
-* Instructor notes and example notebooks in the repo.
+AI assistants — ChatGPT, Claude, Copilot, and the rest — are **not permitted for graded work**: the three homeworks, the in-class deliverables, and the exam. Coding 1 and Data Science 1 run in parallel with this course and share this policy, so there is one rule to keep track of rather than three.
 
----
-
-## **Course requirements and responsibilities**
-
-* **Attendance & participation** expected.  
-* **Environment ready** each class.  
-* **Reproducibility:** Submissions must “Run-All” from a clean clone with relative paths.
+You may use AI freely for personal study: explaining a concept, working through an example that is not your submission. Do not submit AI-generated code or text. The exam is on paper, which is the honest check on all of this — in the end the skills have to be yours.
 
 ---
 
-## **Course assessment and grading**
+## Assessment
 
-* **Homework 1 (SQL single-table \+ window primer)** – 15%
-* **Homework 2 (JSON → tables mini-pipeline)** – 15%
-* **Homework 3 (end-to-end pipeline \+ KPIs \+ stakeholder note)** – 15%
-* **In-class deliverables** (short notebook write-ups, completion-based) – 5%
-* **In-class exam (paper/pen, Oct 19\)** – 50%
+| Component | Weight |
+|---|---:|
+| Homework 1 — Single-table SQL and window functions | 15% |
+| Homework 2 — JSON into tables, with KPIs and validations | 15% |
+| Homework 3 — End-to-end pipeline, KPIs, and stakeholder note | 15% |
+| In-class deliverables (completion-based) | 5% |
+| Final exam (in class, paper and pen) | 50% |
 
-**Department grading guidance.** The department targets a **class median around B+**, with **no more than roughly one-third** of grades at **A/A-** across sections. Final grades remain at instructor discretion within university policy.
+**Homework** is graded against a rubric published with the assignment, weighted toward correctness and data thinking, with reproducibility and communication carrying real weight as well. Submissions must run end-to-end from a clean clone using relative paths: a notebook that does not restart-and-run-all loses credit regardless of what its saved outputs once showed.
 
-**Late policy.** HW accepted up to 48 hours late at −10% per 24 hours. In-class exam and in-class deliverables occur as scheduled; extensions require documented emergencies and approval.
+**In-class deliverables** are short notebooks completed during the session and graded on completion rather than correctness.
 
-**Use of AI tools.** To align with parallel courses, **AI assistants (ChatGPT/Claude/Copilot, etc.) are not permitted for graded work** (HWs, in-class exam). You may use them for personal study; do not submit AI-generated code/text.
+**The final exam** is individual, on paper, no computers, in the last block of Session 3. It runs 90 minutes and tests the same skills as the homeworks applied to new scenarios. You may bring one A4 reference sheet — both sides, typed or handwritten — and nothing else.
 
-**Academic integrity & accessibility.** CEU policies apply. Contact the instructor and university office early for accommodations.
-
----
-
-## **Schedule (3 days, 2 blocks/day)**
-
-### **Day 1 — Mon Oct 5**
-
-**Block A (13:30–15:10) — Data thinking & tidy foundations**
-
-* Tidy data; UID/PK; required vs optional fields; types & pitfalls (floating-point, dates); missing values; notebook state hygiene.
-
-* **In-class deliverable:** Short notebook: load a messy CSV → tidy → designate UID → one summary table.
-
-**Block B (15:30–17:10) — SQL I with DuckDB: single-table mastery (+ window primer)**
-
-* Core SQL: `SELECT`, `WHERE`, `ORDER BY`, calculated columns, `GROUP BY/HAVING`, `NULL` behavior.
-
-* **Window functions (primer, scoped):**
-
-  * `ROW_NUMBER()` to select “latest per id” (dedupe/update).
-
-  * `LAG()` for period-over-period change.
-
-  * 7-row moving average via  
-     `AVG(..) OVER (PARTITION BY id ORDER BY date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)`.
-
-  * Mental model: windows **keep row count**; `GROUP BY` **collapses**. Minimal gotchas (explicit `ORDER BY`, simple frames).
-
-* **Assigned:** **HW1** (single-table SQL \+ 1–2 small window tasks). **Due Mon Oct 12 (start of class).**
+**Department grading guidance.** The department targets a class median around B+, with no more than roughly one-third of grades at A/A−. Final grades remain at instructor discretion within university policy.
 
 ---
 
-### **Day 2 — Mon Oct 12**
+## Schedule
 
-**Block A (13:30–15:10) — SQL II: joins & relational modeling**
+| Session | Date | Arc | Homework |
+|---|---|---|---|
+| 1 — Getting data into shape | Mon 5 Oct 2026 | Tidy data, keys, types, missing values; single-table SQL and a window-function primer | HW1 due **Mon 12 Oct, start of class** |
+| 2 — Combining and ingesting | Mon 12 Oct 2026 | Joins and relational modeling; JSON and APIs into tidy tables | HW2 due **Mon 19 Oct, start of class** |
+| 3 — Pipelines and assessment | Mon 19 Oct 2026 | Data in the wild, pipeline patterns, validations as code; exam in Block B | HW3 due **Mon 2 Nov, 23:59** |
 
-* ERD basics; PK/FK; INNER/LEFT/RIGHT/FULL; anti/semi-join patterns; grouping after joins; duplicate inflation; join keys.
-
-* **In-class deliverable:** JOIN queries answering short stakeholder prompts \+ brief rationale.
-
-**Block B (15:30–17:10) — JSON & APIs → tidy tables**
-
-* REST basics (no-auth endpoint or local JSON); JSON → dict/list; normalization; persist to DuckDB; quick join to a dimension; basic typing.
-
-* **Assigned:** **HW2** (mini-pipeline: JSON → tables \+ 3–5 SQL KPIs \+ validations \+ data dictionary). **Due Mon Oct 19 (start of class).**
+All deadlines are on Moodle, which is authoritative.
 
 ---
 
-### **Day 3 — Mon Oct 19**
+## Submitting your work
 
-**Block A (13:30–15:10) — Data in the wild \+ mini-pipeline patterns \+ how to work**
+Everything is submitted through **Moodle** (<https://ceulearning.ceu.edu/course/view.php?id=19138>); nothing is graded from GitHub. Course materials — notebooks, datasets, assignments, and references — live in the course repository, and each homework README states exactly what to hand in. Submissions must run from a clean clone with relative paths, and must contain nothing you cannot explain.
 
-* **Data in the wild:** spreadsheet/CSV traps (locale separators, header drift), dates/time zones & coverage checks, categoricals & reference tables (codes vs labels), basic geodata (lat/lon, geocoding caveats), columnar formats (Parquet/Arrow vs CSV).
-
-* **Pipeline patterns:** bronze → silver → gold; idempotent transforms; **validations as code** (PK unique, required non-nulls, date window).
-
-* **Work habits:** Run-All discipline, small commits, reading docs, rubber-duck debugging, when to choose SQL vs Python.
-
-* **Micro-exercise:** 3-step pipeline (bronze → silver → gold) with two assertions \+ a one-paragraph risk note. This prepares you for **HW3**.
-
-**Block B (15:30–17:10) — In-class exam**
-
-* **In-class exam (paper/pen, no computers):** Individual assessment covering SQL fundamentals, joins, window functions, JSON normalization concepts, data validation patterns, and data thinking principles.
-
-  * Format: Short-answer questions, SQL query writing, scenario-based problems (e.g., choosing appropriate join types, identifying data quality issues).
-
-  * Duration: 90 minutes.
-
-  * One A4 reference sheet (both sides, typed or handwritten) permitted.
-
-* **Assigned:** **HW3** (end-to-end pipeline using an **offline data pack** — CSV \+ JSON).
-
-  * Deliver: ingest/normalize; persist to DuckDB; 3–5 KPIs with joins and grouping; 2–3 validations as code; concise data dictionary; **stakeholder note** (8–10 sentences).
-
-  * **Submission:** Git-tracked repo/notebook; **Run-All** succeeds on a clean clone.
-
-  * **Due: Mon Nov 2 (23:59)** — two full weeks after class.
+Solutions ship with the repository from day one, encrypted. Passwords are released on Moodle after each deadline has passed.
 
 ---
 
-## **Contact details**
+## Policies
 
-**Instructor**: Eduardo Ariño de la Rubia  
-**Department**: Economics and Business, Central European University
+- **Late homework:** accepted up to 48 hours late at −10% per 24 hours; after 48 hours, no credit.
+- **Extensions:** ask before the deadline, by email, with a reason. Documented illness or emergencies are always accommodated.
+- **Missed exam:** a documented emergency is accommodated through a resit arranged with me; an undocumented absence scores 0. The exam is half your grade — if something is going wrong, tell me before the session rather than after.
+- **Missed in-class deliverable:** these are graded on completion and cannot be made up. A documented absence excludes that deliverable from your average rather than scoring 0.
+- **Regrading:** within 7 days, in writing, naming the rubric criterion you believe was misapplied. The whole submission is re-read, and the grade can move either way.
+- **Grade conversion:** CEU letter scale — A 94+ · A− 88–93 · B+ 80–87 · B 71–79 · B− 63–70 · C+ 58–62 (minimum pass) · F below.
+- **Oversubscription:** this is a core MSBA course. If oversubscribed, seats go to MSBA students first, then EDP/Data track students, then others as space permits — in order of sign-up and subject to program rules.
 
-**Email**: RubiaE@ceu.edu  
-**Office**: Room A104  
-**Office hours**: [Schedule at cal.com/earino](https://cal.com/earino)
+---
 
+## Academic integrity and accessibility
+
+CEU academic integrity and accessibility policies apply. Contact me and the relevant university office early if you need accommodations. Accessible-format exam papers are available on request per your CEU accommodation letter; please ask at least a week ahead.
